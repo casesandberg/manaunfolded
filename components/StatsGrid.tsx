@@ -105,7 +105,21 @@ export default function StatsGrid() {
         <div className="flex flex-1 flex-col justify-center text-5xl font-bold">🔥47</div>
         <div className="text-foreground-light text-center">Streak</div>
       </Card>
-      <Card className="col-span-2 ">
+
+      <Card className="md:hidden">
+        <div className="flex flex-1 flex-col justify-center">
+          <div className="bg-purple inline-flex items-center justify-center rounded-md px-2 py-1 text-center text-lg tracking-tight">
+            Technology
+          </div>
+        </div>
+        <div className="text-foreground-light text-center">Favorite topic</div>
+      </Card>
+
+      <Card className="col-span-2 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 md:flex lg:hidden">
+        <div className="text-shadow text-7xl font-medium tracking-tighter">case</div>
+        <div className="text-foreground-light text-center">2023 Year in Review</div>
+      </Card>
+      <Card className="col-span-2 md:hidden lg:flex">
         <div className="flex flex-1 flex-row items-center justify-center gap-4">
           <div className="bg-green text-shadow mx-2 flex flex-row items-center rounded-md px-2 font-mono text-2xl">
             487
@@ -117,7 +131,8 @@ export default function StatsGrid() {
         </div>
         <div className="text-foreground-light text-center">Biggest profit</div>
       </Card>
-      <Card>
+
+      <Card className="hidden md:flex">
         <div className="flex flex-1 flex-col justify-center">
           <div className="bg-purple inline-flex items-center justify-center rounded-md px-2 py-1 text-center text-lg tracking-tight">
             Technology
@@ -174,7 +189,7 @@ export default function StatsGrid() {
         </div>
         <div className="text-foreground-light shrink-0 text-center">Most bets</div>
       </Card>
-      <Card className="col-span-2 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500">
+      <Card className="col-span-2 hidden bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 md:hidden lg:flex">
         <div className="text-shadow text-7xl font-medium tracking-tighter">case</div>
         <div className="text-foreground-light text-center">2023 Year in Review</div>
       </Card>
@@ -236,7 +251,8 @@ export default function StatsGrid() {
         </div>
         <div className="text-foreground-light text-center">Bets by day</div>
       </Card>
-      <Card className="col-span-2 gap-4">
+
+      <Card className="col-span-2 hidden gap-4 md:flex">
         <div className="flex flex-1 flex-col items-center justify-center gap-4 overflow-clip">
           <div>
             <div className="text-foreground-light line-clamp-1 text-sm font-medium">
@@ -247,6 +263,7 @@ export default function StatsGrid() {
         </div>
         <div className="text-foreground-light shrink-0 text-center">Best gain</div>
       </Card>
+
       <Card className="gap-4">
         <div className="flex flex-1 flex-col items-center justify-center gap-4 overflow-clip">
           <div className="text-foreground-light flex w-full flex-row items-center gap-1 text-sm font-medium">
@@ -257,6 +274,33 @@ export default function StatsGrid() {
           </div>
         </div>
         <div className="text-foreground-light shrink-0 text-center">Biggest market</div>
+      </Card>
+      <Card className="gap-4 md:hidden">
+        <div className="flex flex-1 flex-col items-center justify-center gap-4 overflow-clip">
+          <div className="flex flex-1 flex-row items-center justify-center">
+            <div className="bg-red text-shadow flex flex-row items-center rounded-md px-2 font-mono text-2xl">
+              -883
+              <SouthEastIcon />
+            </div>
+          </div>
+          <div>
+            <div className="line-clamp-2 text-lg">
+              Will Manifold have more than 1500 engaged users by the end of November?
+            </div>
+          </div>
+        </div>
+        <div className="text-foreground-light shrink-0 text-center">Worst loss</div>
+      </Card>
+      <Card className="col-span-2 gap-4 md:hidden">
+        <div className="flex flex-1 flex-col items-center justify-center gap-4 overflow-clip">
+          <div>
+            <div className="text-foreground-light line-clamp-1 text-sm font-medium">
+              What games will be nominated for Game of the Year at The Game Awards 2023?
+            </div>
+          </div>
+          <div className="text-green flex flex-1 flex-row items-center text-7xl font-light">545%</div>
+        </div>
+        <div className="text-foreground-light shrink-0 text-center">Best gain</div>
       </Card>
       <Card className="col-span-2 ">
         <div className="flex flex-1 flex-row items-center justify-center gap-4">
@@ -272,7 +316,7 @@ export default function StatsGrid() {
         </div>
         <div className="text-foreground-light text-center">Most popular market</div>
       </Card>
-      <Card className="gap-4">
+      <Card className="hidden gap-4 md:flex">
         <div className="flex flex-1 flex-col items-center justify-center gap-4 overflow-clip">
           <div className="flex flex-1 flex-row items-center justify-center">
             <div className="bg-red text-shadow flex flex-row items-center rounded-md px-2 font-mono text-2xl">
@@ -292,14 +336,19 @@ export default function StatsGrid() {
         14
         <div className="text-foreground-light absolute bottom-0 p-4 text-center">Popular</div>
       </Card>
-      {/* <Card className="col-span-2 ">
-          16
-          <div className="absolute bottom-0 p-4 text-center text-foreground-light">Popular</div>
-        </Card>
-        <Card>
-          17
-          <div className="absolute bottom-0 p-4 text-center text-foreground-light">Highest league</div>
-        </Card> */}
+
+      <Card className="col-span-2 hidden md:flex lg:hidden">
+        <div className="flex flex-1 flex-row items-center justify-center gap-4">
+          <div className="bg-green text-shadow mx-2 flex flex-row items-center rounded-md px-2 font-mono text-2xl">
+            487
+            <NorthEastIcon />
+          </div>
+          <div>
+            <div className="line-clamp-4 pr-4 text-lg">Which game will win GOTY at the Game Awards in 2023</div>
+          </div>
+        </div>
+        <div className="text-foreground-light text-center">Biggest profit</div>
+      </Card>
     </div>
   )
 }

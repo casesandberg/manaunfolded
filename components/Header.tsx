@@ -13,16 +13,16 @@ export function Header() {
   return (
     <header>
       <Container>
-        <div className="bg-foreground my-4 flex h-14 flex-row items-center justify-between rounded-3xl px-6">
-          <h2 className="text-foreground-light flex-1 font-mono text-lg">mana/unfolded</h2>
-          <div className="relative w-[300px]">
+        <div className="bg-foreground my-4 flex h-14 flex-row items-center justify-between gap-6 rounded-3xl px-4 pr-2 md:px-6">
+          <h2 className="text-foreground-light text flex-1 font-mono md:text-lg">mana/unfolded</h2>
+          <div className="relative w-full md:w-[400px]">
             <SearchIcon className="text-foreground-light pointer-events-none absolute left-2 top-2" />
             <input
-              className="text-foreground h-10 w-full rounded-xl bg-white bg-opacity-10 pl-9 focus-visible:outline-none focus-visible:ring focus-visible:ring-white/50"
+              className="text-foreground h-10 w-full rounded-2xl bg-white bg-opacity-10 pl-9 focus-visible:outline-none focus-visible:ring focus-visible:ring-white/50"
               value="case"
             />
           </div>
-          <div className="flex-1" />
+          <div className="hidden flex-1 md:block" />
         </div>
       </Container>
     </header>

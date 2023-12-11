@@ -20,7 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="flex flex-auto">{children}</main>
         <footer>
           <Container>
-            <div className="text-foreground-light flex w-full flex-row justify-center gap-4 py-4 text-sm">
+            <div className="text-foreground-light flex w-full flex-col items-center justify-center gap-4 py-4 pb-6 text-sm md:flex-row">
               <p>
                 Made by{' '}
                 <a
@@ -35,7 +35,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </a>
               </p>
 
-              <p className="opacity-50">—</p>
+              <p className="hidden opacity-50 md:block">—</p>
 
               <p>
                 <a
@@ -46,7 +46,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </a>
               </p>
 
-              <p className="opacity-50">—</p>
+              <p className="hidden opacity-50 md:block">—</p>
 
               <p>
                 <a
