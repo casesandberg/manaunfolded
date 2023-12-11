@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import { Container } from '@/components/Container'
+import { Header } from '@/components/Header'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -11,8 +13,53 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" className={`h-full antialiased ${inter.className}`}>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <body className="flex min-h-full flex-col">
+        <Header />
+        <main className="flex flex-auto">{children}</main>
+        <footer>
+          <Container>
+            <div className="text-foreground-light flex w-full flex-row justify-center gap-4 py-4 text-sm">
+              <p>
+                Made by{' '}
+                <a
+                  href="https://github.com/casesandberg"
+                  className="hover:text-foreground underline underline-offset-4"
+                >
+                  case
+                </a>{' '}
+                for{' '}
+                <a href="https://manifold.markets/" className="hover:text-foreground underline underline-offset-4">
+                  Manifold
+                </a>
+              </p>
+
+              <p className="opacity-50">—</p>
+
+              <p>
+                <a
+                  href="https://manifold.markets/case?tab=payments&a=100"
+                  className="hover:text-foreground flex flex-row items-center gap-2 underline-offset-4 hover:underline"
+                >
+                  Say thanks with mana
+                </a>
+              </p>
+
+              <p className="opacity-50">—</p>
+
+              <p>
+                <a
+                  href="https://github.com/casesandberg/manifold-bounties"
+                  className="hover:text-foreground flex flex-row items-center gap-2 underline-offset-4 hover:underline"
+                >
+                  Open Source on Github
+                </a>
+              </p>
+            </div>
+          </Container>
+        </footer>
+      </body>
     </html>
   )
 }
