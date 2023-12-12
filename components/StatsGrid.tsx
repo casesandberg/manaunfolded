@@ -1,5 +1,6 @@
 import { User } from '@/lib/manifold'
 import { Card } from './Card'
+import TypedName from './TypedName'
 
 const NorthEastIcon = ({ className }: { className?: string }) => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
@@ -95,7 +96,7 @@ const Award = ({
 
 function calculateFontSize(text: string) {
   const containerWidth = 300
-  const maxFontSize = 150
+  const maxFontSize = 110
   const averageCharWidth = 0.6
 
   if (text.length === 0) return 0
@@ -109,9 +110,9 @@ function UserCard({ user, className }: { user: User; className?: string }) {
     <Card className={`via-purple-500 col-span-2 bg-gradient-to-br from-indigo-500 to-pink-500 ${className}`}>
       <div
         className="text-7xl font-medium tracking-tighter text-shadow"
-        style={{ fontSize: calculateFontSize(user.username) }}
+        style={{ fontSize: calculateFontSize(user.username), lineHeight: 1, height: calculateFontSize(user.username) }}
       >
-        {user.username}
+        <TypedName name={user.username}></TypedName>
       </div>
       <div className="text-center text-foreground-light">2023 Year in Review</div>
     </Card>
