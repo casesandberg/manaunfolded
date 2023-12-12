@@ -26,6 +26,9 @@ const config: Config = {
           light: 'rgba(255,255,255,0.5)',
         },
       },
+      opacity: {
+        '15': '0.15',
+      },
     },
   },
   plugins: [
