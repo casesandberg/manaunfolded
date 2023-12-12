@@ -27,7 +27,7 @@ const searchUsers = (term: string) => {
 export function Search() {
   const router = useRouter()
   const params = useParams()
-  const [query, setQuery] = useState(String(params.username))
+  const [query, setQuery] = useState('')
 
   const users = searchUsers(query)
 
@@ -38,9 +38,7 @@ export function Search() {
         <Combobox.Input
           placeholder={String(params.username)}
           onChange={(event) => setQuery(event.target.value)}
-          value={query}
           className="h-10 w-full rounded-2xl bg-white bg-opacity-10 pl-9 text-foreground focus-visible:outline-none focus-visible:ring focus-visible:ring-white/50"
-          onBlur={() => setQuery('')}
         />
         <Transition
           as={Fragment}

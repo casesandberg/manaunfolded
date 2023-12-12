@@ -1,3 +1,6 @@
+import { User } from '@/lib/manifold'
+import { Card } from './Card'
+
 const NorthEastIcon = ({ className }: { className?: string }) => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
     <path d="M9.5 4.5V6.5H16.09L4.5 18.09L5.91 19.5L17.5 7.91V14.5H19.5V4.5H9.5Z" fill="currentColor" />
@@ -90,38 +93,53 @@ const Award = ({
   </div>
 )
 
-function Card({ children, className }: { children: React.ReactNode; className?: string }) {
+function calculateFontSize(text: string) {
+  const containerWidth = 300
+  const maxFontSize = 150
+  const averageCharWidth = 0.6
+
+  if (text.length === 0) return 0
+
+  const fontSize = containerWidth / (text.length * averageCharWidth)
+  return fontSize > maxFontSize ? maxFontSize : fontSize
+}
+
+function UserCard({ user, className }: { user: User; className?: string }) {
   return (
-    <div className={`bg-foreground relative	flex flex-col items-center justify-center rounded-3xl p-4 ${className}`}>
-      {children}
-    </div>
+    <Card className={`via-purple-500 col-span-2 bg-gradient-to-br from-indigo-500 to-pink-500 ${className}`}>
+      <div
+        className="text-7xl font-medium tracking-tighter text-shadow"
+        style={{ fontSize: calculateFontSize(user.username) }}
+      >
+        {user.username}
+      </div>
+      <div className="text-center text-foreground-light">2023 Year in Review</div>
+    </Card>
   )
 }
 
-export default function StatsGrid() {
+export default function StatsGrid({ user }: { user: User }) {
   return (
     <div className="my-8 grid auto-rows-[200px] grid-cols-2 gap-3 md:grid-cols-4 lg:grid-cols-6">
-      <Card className="from-red/30 bg-gradient-to-t to-40%">
+      <Card className="bg-gradient-to-t from-red/30 to-40%">
         <div className="flex flex-1 flex-col justify-center text-5xl font-bold">🔥47</div>
-        <div className="text-foreground-light text-center">Streak</div>
+        <div className="text-center text-foreground-light">Streak</div>
       </Card>
 
       <Card className="md:hidden">
         <div className="flex flex-1 flex-col justify-center">
-          <div className="bg-purple inline-flex items-center justify-center rounded-md px-2 py-1 text-center text-lg tracking-tight">
+          <div className="inline-flex items-center justify-center rounded-md bg-purple px-2 py-1 text-center text-lg tracking-tight">
             Technology
           </div>
         </div>
-        <div className="text-foreground-light text-center">Favorite topic</div>
+        <div className="text-center text-foreground-light">Favorite topic</div>
       </Card>
 
-      <Card className="col-span-2 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 md:flex lg:hidden">
-        <div className="text-shadow text-7xl font-medium tracking-tighter">case</div>
-        <div className="text-foreground-light text-center">2023 Year in Review</div>
-      </Card>
+      <UserCard user={user} className="md:flex lg:hidden" />
+
       <Card className="col-span-2 md:hidden lg:flex">
         <div className="flex flex-1 flex-row items-center justify-center gap-4">
-          <div className="bg-green text-shadow mx-2 flex flex-row items-center rounded-md px-2 font-mono text-2xl">
+          <div className="mx-2 flex flex-row items-center rounded-md bg-green px-2 font-mono text-2xl text-shadow">
             487
             <NorthEastIcon />
           </div>
@@ -129,20 +147,20 @@ export default function StatsGrid() {
             <div className="line-clamp-4 pr-4 text-lg">Which game will win GOTY at the Game Awards in 2023</div>
           </div>
         </div>
-        <div className="text-foreground-light text-center">Biggest profit</div>
+        <div className="text-center text-foreground-light">Biggest profit</div>
       </Card>
 
       <Card className="hidden md:flex">
         <div className="flex flex-1 flex-col justify-center">
-          <div className="bg-purple inline-flex items-center justify-center rounded-md px-2 py-1 text-center text-lg tracking-tight">
+          <div className="inline-flex items-center justify-center rounded-md bg-purple px-2 py-1 text-center text-lg tracking-tight">
             Technology
           </div>
         </div>
-        <div className="text-foreground-light text-center">Favorite topic</div>
+        <div className="text-center text-foreground-light">Favorite topic</div>
       </Card>
       <Card className={true ? 'bg-green' : 'bg-red'}>
-        <div className="text-shadow flex flex-1 flex-col justify-center font-mono text-4xl font-medium">4,160</div>
-        <div className="text-foreground-light text-center">Total profit</div>
+        <div className="flex flex-1 flex-col justify-center font-mono text-4xl font-medium text-shadow">4,160</div>
+        <div className="text-center text-foreground-light">Total profit</div>
       </Card>
       <Card className="row-span-2 flex flex-col">
         <div className="flex flex-1 flex-col justify-center">
@@ -172,113 +190,112 @@ export default function StatsGrid() {
             </div>
           </div>
         </div>
-        <div className="text-foreground-light text-center">Leagues</div>
+        <div className="text-center text-foreground-light">Leagues</div>
       </Card>
       <Card className="row-span-2 ">
         06
-        <div className="text-foreground-light absolute bottom-0 p-4 text-center">Popular</div>
+        <div className="absolute bottom-0 p-4 text-center text-foreground-light">Popular</div>
       </Card>
       <Card className="gap-4">
         <div className="flex flex-1 flex-col items-center justify-center gap-4 overflow-clip">
           <div>
-            <div className="text-foreground-light line-clamp-2 text-sm font-medium">
+            <div className="line-clamp-2 text-sm font-medium text-foreground-light">
               Manifold: Live! - Sun 12/3 - Episode 1: - What will be true about this show
             </div>
           </div>
           <div className="flex flex-1 flex-row items-center text-5xl font-bold">67</div>
         </div>
-        <div className="text-foreground-light shrink-0 text-center">Most bets</div>
+        <div className="shrink-0 text-center text-foreground-light">Most bets</div>
       </Card>
-      <Card className="col-span-2 hidden bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 md:hidden lg:flex">
-        <div className="text-shadow text-7xl font-medium tracking-tighter">case</div>
-        <div className="text-foreground-light text-center">2023 Year in Review</div>
-      </Card>
+
+      <UserCard user={user} className="md:hidden lg:flex" />
+
       <Card className="gap-4">
         <div className="flex flex-1 flex-col items-center justify-center gap-4 overflow-clip">
           <div>
-            <div className="text-foreground-light line-clamp-2 text-sm font-medium">
+            <div className="line-clamp-2 text-sm font-medium text-foreground-light">
               Will TIME Magazine announce the announcement of the Person of The Year before Wednesday, December 6th?
             </div>
           </div>
-          <div className="text-red flex flex-1 flex-row items-center text-5xl font-light">-100%</div>
+          <div className="flex flex-1 flex-row items-center text-5xl font-light text-red">-100%</div>
         </div>
-        <div className="text-foreground-light shrink-0 text-center">Worst drop</div>
+        <div className="shrink-0 text-center text-foreground-light">Worst drop</div>
       </Card>
       <Card>
         <div className="flex flex-1 flex-col justify-center">
-          <div className="bg-blue flex h-24 w-24 items-center justify-center rounded-full text-5xl font-light tracking-tight text-black">
+          <div className="flex h-24 w-24 items-center justify-center rounded-full bg-blue text-5xl font-light tracking-tight text-black">
             47
           </div>
         </div>
-        <div className="text-foreground-light text-center">Days forecasting</div>
+        <div className="text-center text-foreground-light">Days forecasting</div>
       </Card>
       <Card className="row-span-2">
         <div className="grid-rows-7 grid w-full flex-1 px-4 pt-4">
           <div className="flex flex-col gap-1">
-            <div className="bg-yellow h-4 w-12 rounded" />
-            <div className="text-foreground-light text-xs">Monday</div>
+            <div className="h-4 w-12 rounded bg-yellow" />
+            <div className="text-xs text-foreground-light">Monday</div>
           </div>
 
           <div className="flex flex-col gap-1">
-            <div className="bg-yellow h-4 w-8 rounded" />
-            <div className="text-foreground-light text-xs">Tuesday</div>
+            <div className="h-4 w-8 rounded bg-yellow" />
+            <div className="text-xs text-foreground-light">Tuesday</div>
           </div>
 
           <div className="flex flex-col gap-1">
-            <div className="bg-yellow h-4 w-14 rounded" />
-            <div className="text-foreground-light text-xs">Wednesday</div>
+            <div className="h-4 w-14 rounded bg-yellow" />
+            <div className="text-xs text-foreground-light">Wednesday</div>
           </div>
 
           <div className="flex flex-col gap-1">
-            <div className="bg-yellow h-4 w-28 rounded" />
-            <div className="text-foreground-light text-xs">Thursday</div>
+            <div className="h-4 w-28 rounded bg-yellow" />
+            <div className="text-xs text-foreground-light">Thursday</div>
           </div>
 
           <div className="flex flex-col gap-1">
-            <div className="bg-yellow h-4 w-14 rounded" />
-            <div className="text-foreground-light text-xs">Friday</div>
+            <div className="h-4 w-14 rounded bg-yellow" />
+            <div className="text-xs text-foreground-light">Friday</div>
           </div>
 
           <div className="flex flex-col gap-1">
-            <div className="bg-yellow h-4 w-6 rounded" />
-            <div className="text-foreground-light text-xs">Saturday</div>
+            <div className="h-4 w-6 rounded bg-yellow" />
+            <div className="text-xs text-foreground-light">Saturday</div>
           </div>
 
           <div className="flex flex-col gap-1">
-            <div className="bg-yellow h-4 w-20 rounded" />
-            <div className="text-foreground-light text-xs">Sunday</div>
+            <div className="h-4 w-20 rounded bg-yellow" />
+            <div className="text-xs text-foreground-light">Sunday</div>
           </div>
         </div>
-        <div className="text-foreground-light text-center">Bets by day</div>
+        <div className="text-center text-foreground-light">Bets by day</div>
       </Card>
 
       <Card className="col-span-2 hidden gap-4 md:flex">
         <div className="flex flex-1 flex-col items-center justify-center gap-4 overflow-clip">
           <div>
-            <div className="text-foreground-light line-clamp-1 text-sm font-medium">
+            <div className="line-clamp-1 text-sm font-medium text-foreground-light">
               What games will be nominated for Game of the Year at The Game Awards 2023?
             </div>
           </div>
-          <div className="text-green flex flex-1 flex-row items-center text-7xl font-light">545%</div>
+          <div className="flex flex-1 flex-row items-center text-7xl font-light text-green">545%</div>
         </div>
-        <div className="text-foreground-light shrink-0 text-center">Best gain</div>
+        <div className="shrink-0 text-center text-foreground-light">Best gain</div>
       </Card>
 
       <Card className="gap-4">
         <div className="flex flex-1 flex-col items-center justify-center gap-4 overflow-clip">
-          <div className="text-foreground-light flex w-full flex-row items-center gap-1 text-sm font-medium">
+          <div className="flex w-full flex-row items-center gap-1 text-sm font-medium text-foreground-light">
             <WaterDropIcon className="h-4 w-4" /> 1215
           </div>
           <div className="flex flex-1 flex-row items-center text-lg font-bold">
             <div className="line-clamp-3">Will Sam Altman be reinstated as CEO of OpenAI by Sunday, November 19th?</div>
           </div>
         </div>
-        <div className="text-foreground-light shrink-0 text-center">Biggest market</div>
+        <div className="shrink-0 text-center text-foreground-light">Biggest market</div>
       </Card>
       <Card className="gap-4 md:hidden">
         <div className="flex flex-1 flex-col items-center justify-center gap-4 overflow-clip">
           <div className="flex flex-1 flex-row items-center justify-center">
-            <div className="bg-red text-shadow flex flex-row items-center rounded-md px-2 font-mono text-2xl">
+            <div className="flex flex-row items-center rounded-md bg-red px-2 font-mono text-2xl text-shadow">
               -883
               <SouthEastIcon />
             </div>
@@ -289,22 +306,22 @@ export default function StatsGrid() {
             </div>
           </div>
         </div>
-        <div className="text-foreground-light shrink-0 text-center">Worst loss</div>
+        <div className="shrink-0 text-center text-foreground-light">Worst loss</div>
       </Card>
       <Card className="col-span-2 gap-4 md:hidden">
         <div className="flex flex-1 flex-col items-center justify-center gap-4 overflow-clip">
           <div>
-            <div className="text-foreground-light line-clamp-1 text-sm font-medium">
+            <div className="line-clamp-1 text-sm font-medium text-foreground-light">
               What games will be nominated for Game of the Year at The Game Awards 2023?
             </div>
           </div>
-          <div className="text-green flex flex-1 flex-row items-center text-7xl font-light">545%</div>
+          <div className="flex flex-1 flex-row items-center text-7xl font-light text-green">545%</div>
         </div>
-        <div className="text-foreground-light shrink-0 text-center">Best gain</div>
+        <div className="shrink-0 text-center text-foreground-light">Best gain</div>
       </Card>
       <Card className="col-span-2 ">
         <div className="flex flex-1 flex-row items-center justify-center gap-4">
-          <div className="text-shadow mx-2 flex flex-row items-center rounded-md bg-white px-2 font-mono text-2xl text-black">
+          <div className="mx-2 flex flex-row items-center rounded-md bg-white px-2 font-mono text-2xl text-black text-shadow">
             <GroupIcon />
             100
           </div>
@@ -314,12 +331,12 @@ export default function StatsGrid() {
             </div>
           </div>
         </div>
-        <div className="text-foreground-light text-center">Most popular market</div>
+        <div className="text-center text-foreground-light">Most popular market</div>
       </Card>
       <Card className="hidden gap-4 md:flex">
         <div className="flex flex-1 flex-col items-center justify-center gap-4 overflow-clip">
           <div className="flex flex-1 flex-row items-center justify-center">
-            <div className="bg-red text-shadow flex flex-row items-center rounded-md px-2 font-mono text-2xl">
+            <div className="flex flex-row items-center rounded-md bg-red px-2 font-mono text-2xl text-shadow">
               -883
               <SouthEastIcon />
             </div>
@@ -330,16 +347,16 @@ export default function StatsGrid() {
             </div>
           </div>
         </div>
-        <div className="text-foreground-light shrink-0 text-center">Worst loss</div>
+        <div className="shrink-0 text-center text-foreground-light">Worst loss</div>
       </Card>
       <Card className="col-span-2 ">
         14
-        <div className="text-foreground-light absolute bottom-0 p-4 text-center">Popular</div>
+        <div className="absolute bottom-0 p-4 text-center text-foreground-light">Popular</div>
       </Card>
 
       <Card className="col-span-2 hidden md:flex lg:hidden">
         <div className="flex flex-1 flex-row items-center justify-center gap-4">
-          <div className="bg-green text-shadow mx-2 flex flex-row items-center rounded-md px-2 font-mono text-2xl">
+          <div className="mx-2 flex flex-row items-center rounded-md bg-green px-2 font-mono text-2xl text-shadow">
             487
             <NorthEastIcon />
           </div>
@@ -347,7 +364,7 @@ export default function StatsGrid() {
             <div className="line-clamp-4 pr-4 text-lg">Which game will win GOTY at the Game Awards in 2023</div>
           </div>
         </div>
-        <div className="text-foreground-light text-center">Biggest profit</div>
+        <div className="text-center text-foreground-light">Biggest profit</div>
       </Card>
     </div>
   )
