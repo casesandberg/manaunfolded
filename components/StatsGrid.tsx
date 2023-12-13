@@ -106,6 +106,24 @@ function calculateFontSize(text: string) {
   return fontSize > maxFontSize ? maxFontSize : fontSize
 }
 
+function normalize(value: number, min: number, max: number) {
+  return min + (max - min) * value
+}
+
+function calculateDayWidth(
+  stats: NonNullable<Stats['items']['BETS_BY_DAY']>,
+  day: keyof NonNullable<Stats['items']['BETS_BY_DAY']>,
+) {
+  const min = 0.15
+  const max = 1
+  const currentRatio = stats[day] / stats.maxCount
+
+  const adjustedRatio = normalize(currentRatio, min, max)
+  const finalRatio = Math.min(1, adjustedRatio)
+
+  return `${finalRatio * 100}%`
+}
+
 function UserCard({ user, className }: { user: User; className?: string }) {
   return (
     <Card className={`via-purple-500 col-span-2 bg-gradient-to-br from-indigo-500 to-pink-500 ${className}`}>
@@ -308,7 +326,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
               <div
                 className="h-4 rounded bg-yellow"
                 style={{
-                  width: `${(stats.items.BETS_BY_DAY.mondayCount / stats.items.BETS_BY_DAY.totalCount) * 100}%`,
+                  width: calculateDayWidth(stats.items.BETS_BY_DAY, 'mondayCount'),
                 }}
               />
               <div className="text-xs text-foreground-light">Monday</div>
@@ -318,7 +336,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
               <div
                 className="h-4 rounded bg-yellow"
                 style={{
-                  width: `${(stats.items.BETS_BY_DAY.tuesdayCount / stats.items.BETS_BY_DAY.totalCount) * 100}%`,
+                  width: calculateDayWidth(stats.items.BETS_BY_DAY, 'tuesdayCount'),
                 }}
               />
               <div className="text-xs text-foreground-light">Tuesday</div>
@@ -328,7 +346,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
               <div
                 className="h-4 rounded bg-yellow"
                 style={{
-                  width: `${(stats.items.BETS_BY_DAY.wednesdayCount / stats.items.BETS_BY_DAY.totalCount) * 100}%`,
+                  width: calculateDayWidth(stats.items.BETS_BY_DAY, 'wednesdayCount'),
                 }}
               />
               <div className="text-xs text-foreground-light">Wednesday</div>
@@ -338,7 +356,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
               <div
                 className="h-4 rounded bg-yellow"
                 style={{
-                  width: `${(stats.items.BETS_BY_DAY.thursdayCount / stats.items.BETS_BY_DAY.totalCount) * 100}%`,
+                  width: calculateDayWidth(stats.items.BETS_BY_DAY, 'thursdayCount'),
                 }}
               />
               <div className="text-xs text-foreground-light">Thursday</div>
@@ -348,7 +366,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
               <div
                 className="h-4 rounded bg-yellow"
                 style={{
-                  width: `${(stats.items.BETS_BY_DAY.fridayCount / stats.items.BETS_BY_DAY.totalCount) * 100}%`,
+                  width: calculateDayWidth(stats.items.BETS_BY_DAY, 'fridayCount'),
                 }}
               />
               <div className="text-xs text-foreground-light">Friday</div>
@@ -358,7 +376,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
               <div
                 className="h-4 rounded bg-yellow"
                 style={{
-                  width: `${(stats.items.BETS_BY_DAY.saturdayCount / stats.items.BETS_BY_DAY.totalCount) * 100}%`,
+                  width: calculateDayWidth(stats.items.BETS_BY_DAY, 'saturdayCount'),
                 }}
               />
               <div className="text-xs text-foreground-light">Saturday</div>
@@ -368,7 +386,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
               <div
                 className="h-4 rounded bg-yellow"
                 style={{
-                  width: `${(stats.items.BETS_BY_DAY.sundayCount / stats.items.BETS_BY_DAY.totalCount) * 100}%`,
+                  width: calculateDayWidth(stats.items.BETS_BY_DAY, 'sundayCount'),
                 }}
               />
               <div className="text-xs text-foreground-light">Sunday</div>

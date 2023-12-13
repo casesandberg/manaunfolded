@@ -39,7 +39,7 @@ export type Stats = {
       count: number
     }
     BETS_BY_DAY?: {
-      totalCount: number
+      maxCount: number
       mondayCount: number
       tuesdayCount: number
       wednesdayCount: number
@@ -123,14 +123,14 @@ const db: Record<string, Stats> = {
         count: 47,
       },
       BETS_BY_DAY: {
-        totalCount: 825,
+        maxCount: 70,
         mondayCount: 40,
         tuesdayCount: 30,
         wednesdayCount: 20,
         thursdayCount: 10,
         fridayCount: 5,
         saturdayCount: 0,
-        sundayCount: 700,
+        sundayCount: 70,
       },
       POSITIONS_BEST_PERCENT_GAIN: {
         marketId: '123',
