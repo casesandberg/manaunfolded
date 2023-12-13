@@ -6,17 +6,19 @@ export function Card({
   children,
   className,
   delay = 0,
+  opacity = 1,
 }: {
   children?: React.ReactNode
   className?: string
   delay?: number
+  opacity?: number
 }) {
   return (
     <motion.div
       variants={{
         hidden: { opacity: 0, scale: 0.75 },
         show: {
-          opacity: 1,
+          opacity,
           scale: 1,
           transition: {
             type: 'spring',

@@ -149,7 +149,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
           <div className="text-center text-foreground-light">Streak</div>
         </Card>
       ) : (
-        <Card className="opacity-50" delay={0.3} />
+        <Card opacity={0.5} delay={0.3} />
       )}
 
       {stats.items.BETS_AGGREGATE_TOPIC ? (
@@ -162,7 +162,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
           <div className="text-center text-foreground-light">Favorite topic</div>
         </Card>
       ) : (
-        <Card className="opacity-50 md:hidden" delay={0.1} />
+        <Card className="md:hidden" opacity={0.5} delay={0.1} />
       )}
 
       <UserCard user={user} className="md:flex lg:hidden" />
@@ -181,7 +181,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
           <div className="text-center text-foreground-light">Biggest profit</div>
         </Card>
       ) : (
-        <Card className="col-span-2 opacity-50 md:hidden lg:flex" delay={0.2} />
+        <Card className="col-span-2 md:hidden lg:flex" opacity={0.5} delay={0.2} />
       )}
 
       {stats.items.BETS_AGGREGATE_TOPIC ? (
@@ -194,7 +194,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
           <div className="text-center text-foreground-light">Favorite topic</div>
         </Card>
       ) : (
-        <Card className="hidden opacity-50 md:flex" delay={0.4} />
+        <Card className="hidden md:flex" opacity={0.5} delay={0.4} />
       )}
 
       {stats.items.USER_PROFIT ? (
@@ -205,7 +205,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
           <div className="text-center text-foreground-light">Total profit</div>
         </Card>
       ) : (
-        <Card className="opacity-50" delay={0.2} />
+        <Card opacity={0.5} delay={0.2} />
       )}
 
       {stats.items.USER_LEAGUES ? (
@@ -260,10 +260,10 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
           <div className="text-center text-foreground-light">Leagues</div>
         </Card>
       ) : (
-        <Card className="row-span-2 opacity-50" delay={0.3} />
+        <Card className="row-span-2" opacity={0.5} delay={0.3} />
       )}
 
-      <Card className="row-span-2" delay={0.2}>
+      <Card className="row-span-2" delay={0.2} opacity={0.5}>
         06
         <div className="absolute bottom-0 p-4 text-center text-foreground-light">Popular</div>
       </Card>
@@ -283,7 +283,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
           <div className="shrink-0 text-center text-foreground-light">Most bets</div>
         </Card>
       ) : (
-        <Card className="opacity-50" delay={0.5} />
+        <Card opacity={0.5} delay={0.5} />
       )}
 
       <UserCard user={user} className="md:hidden lg:flex" />
@@ -303,7 +303,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
           <div className="shrink-0 text-center text-foreground-light">Worst drop</div>
         </Card>
       ) : (
-        <Card className="opacity-50" delay={0.3} />
+        <Card opacity={0.5} delay={0.3} />
       )}
 
       {stats.items.USER_DAYS_SINCE_CREATION ? (
@@ -316,7 +316,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
           <div className="text-center text-foreground-light">Days forecasting</div>
         </Card>
       ) : (
-        <Card className="opacity-50" delay={0.6} />
+        <Card opacity={0.5} delay={0.6} />
       )}
 
       {stats.items.BETS_BY_DAY ? (
@@ -395,7 +395,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
           <div className="text-center text-foreground-light">Bets by day</div>
         </Card>
       ) : (
-        <Card className="row-span-2 opacity-50" delay={0.7} />
+        <Card className="row-span-2" opacity={0.5} delay={0.7} />
       )}
 
       {stats.items.POSITIONS_BEST_PERCENT_GAIN ? (
@@ -413,7 +413,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
           <div className="shrink-0 text-center text-foreground-light">Best gain</div>
         </Card>
       ) : (
-        <Card className="col-span-2 hidden opacity-50 md:flex" delay={0.5} />
+        <Card className="col-span-2 hidden md:flex" opacity={0.5} delay={0.5} />
       )}
 
       {stats.items.MARKET_MOST_LIQUIDITY ? (
@@ -429,7 +429,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
           <div className="shrink-0 text-center text-foreground-light">Biggest market</div>
         </Card>
       ) : (
-        <Card className="opacity-50" delay={0.8} />
+        <Card opacity={0.5} delay={0.8} />
       )}
 
       {stats.items.POSITIONS_LARGEST_LOSS ? (
@@ -448,7 +448,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
           <div className="shrink-0 text-center text-foreground-light">Worst loss</div>
         </Card>
       ) : (
-        <Card className="gap-4 opacity-50 md:hidden" delay={0.7} />
+        <Card className="gap-4 md:hidden" opacity={0.5} delay={0.7} />
       )}
 
       {stats.items.POSITIONS_BEST_PERCENT_GAIN ? (
@@ -466,7 +466,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
           <div className="shrink-0 text-center text-foreground-light">Best gain</div>
         </Card>
       ) : (
-        <Card className="col-span-2 gap-4 opacity-50 md:hidden" delay={0.9} />
+        <Card className="col-span-2 gap-4 md:hidden" opacity={0.5} delay={0.9} />
       )}
 
       {stats.items.MARKET_MOST_BETTORS ? (
@@ -483,7 +483,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
           <div className="text-center text-foreground-light">Most popular market</div>
         </Card>
       ) : (
-        <Card className="col-span-2 opacity-50" delay={0.8} />
+        <Card className="col-span-2" opacity={0.5} delay={0.8} />
       )}
 
       {stats.items.POSITIONS_LARGEST_LOSS ? (
@@ -502,10 +502,10 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
           <div className="shrink-0 text-center text-foreground-light">Worst loss</div>
         </Card>
       ) : (
-        <Card className="hidden gap-4 opacity-50 md:flex" delay={0.9} />
+        <Card className="hidden gap-4 md:flex" opacity={0.5} delay={0.9} />
       )}
 
-      <Card className="col-span-2" delay={1}>
+      <Card className="col-span-2" delay={1} opacity={0.5}>
         14
         <div className="absolute bottom-0 p-4 text-center text-foreground-light">Popular</div>
       </Card>
@@ -524,7 +524,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
           <div className="text-center text-foreground-light">Biggest profit</div>
         </Card>
       ) : (
-        <Card className="col-span-2 hidden opacity-50 md:flex lg:hidden" delay={1} />
+        <Card className="col-span-2 hidden md:flex lg:hidden" opacity={0.5} delay={1} />
       )}
     </div>
   )
