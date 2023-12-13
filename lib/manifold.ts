@@ -39,3 +39,7 @@ async function fetchApi<T extends object>(method: string, path: string, body?: R
 export async function getUserByUsername(username: string) {
   return fetchApi<User>('GET', `/v0/user?username=${username}`)
 }
+
+export async function searchUsers(term: string, limit: number = 5) {
+  return fetchApi<Array<User>>('GET', `/search-users?term=${term}&limit=${limit}`)
+}

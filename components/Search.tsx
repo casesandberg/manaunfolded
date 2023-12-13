@@ -1,8 +1,9 @@
 'use client'
 
+import { User, searchUsers } from '@/lib/manifold'
 import { Combobox, Transition } from '@headlessui/react'
 import { useParams, useRouter } from 'next/navigation'
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 
 const SearchIcon = ({ className }: { className?: string }) => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
@@ -19,20 +20,20 @@ const KeyboardArrowRightIcon = ({ className }: { className?: string }) => (
   </svg>
 )
 
-const searchUsers = (term: string) => {
-  const people = ['SG', 'Austin', 'JamesGrugett', 'Nikos', 'case']
-  return term === '' ? people : people.filter((person) => person.toLowerCase().includes(term.toLowerCase()))
-}
-
-export function Search() {
+export function Search({ searchUsers }: { searchUsers: (query: string) => Promise<Array<User>> }) {
   const router = useRouter()
   const params = useParams()
   const [query, setQuery] = useState('')
+  const [users, setUsers] = useState<Array<User>>([])
 
-  const users = searchUsers(query)
+  useEffect(() => {
+    searchUsers(query).then((users) => {
+      setUsers(users)
+    })
+  }, [query, searchUsers])
 
   return (
-    <Combobox onChange={(username) => router.push(`/${username}`)}>
+    <Combobox onChange={(username) => router.push(`/${username}`)} immediate>
       <div className="relative w-full md:w-[400px]">
         <SearchIcon className="pointer-events-none absolute left-2 top-2 text-foreground-light" />
         <Combobox.Input
@@ -42,25 +43,30 @@ export function Search() {
         />
         <Transition
           as={Fragment}
+          enter="transition ease-out duration-100"
+          enterFrom="translate-y-2 opacity-0"
+          enterTo="translate-y-0 opacit200"
           leave="transition ease-in duration-100"
-          leaveFrom="opacity-100"
-          leaveTo="opacity-0"
-          afterLeave={() => setQuery('')}
+          leaveFrom="opacity-100 translate-y-0"
+          leaveTo="opacity-0 translate-y-2"
         >
-          <Combobox.Options className="absolute z-50 mt-4 max-h-64 w-full overflow-auto rounded-2xl bg-white/15 py-1 text-base ring-1 ring-black/5 backdrop-blur-xl focus:outline-none sm:text-sm">
+          <Combobox.Options className="absolute z-50 mt-4 max-h-64 w-full overflow-auto rounded-2xl bg-white/15 py-1 text-base ring-1 ring-black/5 backdrop-blur-lg focus:outline-none sm:text-sm">
             {users.length ? (
-              users.map((person) => (
+              users.map((user) => (
                 <Combobox.Option
-                  key={person}
-                  value={person}
+                  key={user.id}
+                  value={user.username}
                   className={({ active }) =>
-                    `relative flex cursor-default select-none flex-row items-center px-3 py-2.5 ${
-                      active ? 'bg-foreground/20 text-white [&>svg]:opacity-100' : 'text-white/60 [&>svg]:opacity-0'
+                    `relative flex cursor-default select-none flex-row items-center overflow-hidden border-t border-black/30 px-3 py-2.5 first:border-t-0 ${
+                      active
+                        ? 'bg-foreground/20 text-white [&>span]:text-white/60 [&>svg]:opacity-100'
+                        : 'text-white/60 [&>svg]:opacity-0'
                     } `
                   }
                 >
-                  <KeyboardArrowRightIcon />
-                  {person}
+                  <KeyboardArrowRightIcon className="flex-shrink-0" />
+                  <div className="flex-shrink-0 font-semibold">{user.name}</div>
+                  <span className="ml-2 block flex-1 text-ellipsis text-white/40">@{user.username}</span>
                 </Combobox.Option>
               ))
             ) : (
