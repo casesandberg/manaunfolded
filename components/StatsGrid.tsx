@@ -1,6 +1,7 @@
 import { User } from '@/lib/manifold'
 import { Card } from './Card'
 import TypedName from './TypedName'
+import { Stats } from '@/lib/stats'
 
 const NorthEastIcon = ({ className }: { className?: string }) => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
@@ -119,254 +120,394 @@ function UserCard({ user, className }: { user: User; className?: string }) {
   )
 }
 
-export default function StatsGrid({ user }: { user: User }) {
+export default function StatsGrid({ user, stats }: { user: User; stats: Stats }) {
   return (
     <div className="my-8 grid auto-rows-[200px] grid-cols-2 gap-3 md:grid-cols-4 lg:grid-cols-6">
-      <Card className="bg-gradient-to-t from-red/30 to-40%">
-        <div className="flex flex-1 flex-col justify-center text-5xl font-bold">🔥47</div>
-        <div className="text-center text-foreground-light">Streak</div>
-      </Card>
-
-      <Card className="md:hidden">
-        <div className="flex flex-1 flex-col justify-center">
-          <div className="inline-flex items-center justify-center rounded-md bg-purple px-2 py-1 text-center text-lg tracking-tight">
-            Technology
+      {stats.items.USER_STREAK ? (
+        <Card className="bg-gradient-to-t from-red/30 to-40%">
+          <div className="flex flex-1 flex-col justify-center text-5xl font-bold">
+            🔥{stats.items.USER_STREAK.count}
           </div>
-        </div>
-        <div className="text-center text-foreground-light">Favorite topic</div>
-      </Card>
+          <div className="text-center text-foreground-light">Streak</div>
+        </Card>
+      ) : (
+        <Card className="opacity-50" />
+      )}
+
+      {stats.items.BETS_AGGREGATE_TOPIC ? (
+        <Card className="md:hidden">
+          <div className="flex flex-1 flex-col justify-center">
+            <div className="inline-flex items-center justify-center rounded-md bg-purple px-2 py-1 text-center text-lg tracking-tight">
+              {stats.items.BETS_AGGREGATE_TOPIC.name}
+            </div>
+          </div>
+          <div className="text-center text-foreground-light">Favorite topic</div>
+        </Card>
+      ) : (
+        <Card className="opacity-50 md:hidden" />
+      )}
 
       <UserCard user={user} className="md:flex lg:hidden" />
 
-      <Card className="col-span-2 md:hidden lg:flex">
-        <div className="flex flex-1 flex-row items-center justify-center gap-4">
-          <div className="mx-2 flex flex-row items-center rounded-md bg-green px-2 font-mono text-2xl text-shadow">
-            487
-            <NorthEastIcon />
+      {stats.items.POSITIONS_LARGEST_PROFIT ? (
+        <Card className="col-span-2 md:hidden lg:flex">
+          <div className="flex flex-1 flex-row items-center justify-center gap-4">
+            <div className="mx-2 flex flex-row items-center rounded-md bg-green px-2 font-mono text-2xl text-shadow">
+              {stats.items.POSITIONS_LARGEST_PROFIT.amount}
+              <NorthEastIcon />
+            </div>
+            <div>
+              <div className="line-clamp-4 pr-4 text-lg">{stats.items.POSITIONS_LARGEST_PROFIT.title}</div>
+            </div>
           </div>
-          <div>
-            <div className="line-clamp-4 pr-4 text-lg">Which game will win GOTY at the Game Awards in 2023</div>
-          </div>
-        </div>
-        <div className="text-center text-foreground-light">Biggest profit</div>
-      </Card>
+          <div className="text-center text-foreground-light">Biggest profit</div>
+        </Card>
+      ) : (
+        <Card className="col-span-2 opacity-50 md:hidden lg:flex" />
+      )}
 
-      <Card className="hidden md:flex">
-        <div className="flex flex-1 flex-col justify-center">
-          <div className="inline-flex items-center justify-center rounded-md bg-purple px-2 py-1 text-center text-lg tracking-tight">
-            Technology
-          </div>
-        </div>
-        <div className="text-center text-foreground-light">Favorite topic</div>
-      </Card>
-      <Card className={true ? 'bg-green' : 'bg-red'}>
-        <div className="flex flex-1 flex-col justify-center font-mono text-4xl font-medium text-shadow">4,160</div>
-        <div className="text-center text-foreground-light">Total profit</div>
-      </Card>
-      <Card className="row-span-2 flex flex-col">
-        <div className="flex flex-1 flex-col justify-center">
-          <div className="flex w-[120px] flex-col">
-            <div className="h-9">
-              {/* <Award label="Silicon" Icon={TerminalIcon} className="bg-[#666]" /> */}
-              <Award className="bg-[#333]" />
-            </div>
-            <div className="h-9 w-14 self-end">
-              {/* <Award label="Bronze" Icon={EmojiEventsIcon} color="" className="bg-[#FFA000] self-end" /> */}
-              <Award className="self-end bg-[#333]" />
-            </div>
-            <div className="h-9">
-              <Award label="Silver" Icon={EmojiEventsIcon} className="bg-[#C0C0C0]" />
-            </div>
-            <div className="h-9 w-14 self-end">
-              <Award label="Gold" Icon={EmojiEventsIcon} className="self-end bg-[#FFD700]" />
-            </div>
-            <div className="h-9">
-              <Award label="Platinum" Icon={EmojiEventsIcon} className="bg-[#85a5c9]" />
-            </div>
-            <div className="h-9 w-14 self-end">
-              <Award label="Diamond" Icon={DiamondIcon} className="self-end bg-[#54D6AC]" />
-            </div>
-            <div className="h-9">
-              <Award label="Masters" Icon={WorkspacePremium} className="bg-[#D425F9]" />
+      {stats.items.BETS_AGGREGATE_TOPIC ? (
+        <Card className="hidden md:flex">
+          <div className="flex flex-1 flex-col justify-center">
+            <div className="inline-flex items-center justify-center rounded-md bg-purple px-2 py-1 text-center text-lg tracking-tight">
+              {stats.items.BETS_AGGREGATE_TOPIC.name}
             </div>
           </div>
-        </div>
-        <div className="text-center text-foreground-light">Leagues</div>
-      </Card>
+          <div className="text-center text-foreground-light">Favorite topic</div>
+        </Card>
+      ) : (
+        <Card className="hidden opacity-50 md:flex" />
+      )}
+
+      {stats.items.USER_PROFIT ? (
+        <Card className={stats.items.USER_PROFIT.count > 0 ? 'bg-green' : 'bg-red'}>
+          <div className="flex flex-1 flex-col justify-center font-mono text-4xl font-medium text-shadow">
+            {stats.items.USER_PROFIT.count}
+          </div>
+          <div className="text-center text-foreground-light">Total profit</div>
+        </Card>
+      ) : (
+        <Card className="opacity-50" />
+      )}
+
+      {stats.items.USER_LEAGUES ? (
+        <Card className="row-span-2 flex flex-col">
+          <div className="flex flex-1 flex-col justify-center">
+            <div className="flex w-[120px] flex-col">
+              {stats.items.USER_LEAGUES.leagues.map((league, i) => {
+                let award = null
+
+                switch (league.division) {
+                  case 'silicon': {
+                    award = <Award label="Silicon" Icon={TerminalIcon} className="bg-[#666]" />
+                    break
+                  }
+                  case 'bronze': {
+                    award = <Award label="Bronze" Icon={EmojiEventsIcon} className="self-end bg-[#FFA000]" />
+                    break
+                  }
+                  case 'silver': {
+                    award = <Award label="Silver" Icon={EmojiEventsIcon} className="bg-[#C0C0C0]" />
+                    break
+                  }
+                  case 'gold': {
+                    award = <Award label="Gold" Icon={EmojiEventsIcon} className="self-end bg-[#FFD700]" />
+                    break
+                  }
+                  case 'platinum': {
+                    award = <Award label="Platinum" Icon={EmojiEventsIcon} className="bg-[#85a5c9]" />
+                    break
+                  }
+                  case 'diamond': {
+                    award = <Award label="Diamond" Icon={DiamondIcon} className="self-end bg-[#54D6AC]" />
+                    break
+                  }
+                  case 'masters': {
+                    award = <Award label="Masters" Icon={WorkspacePremium} className="bg-[#D425F9]" />
+                    break
+                  }
+                  default: {
+                    award = <Award className="bg-[#333]" />
+                  }
+                }
+
+                return (
+                  <div key={league.season} className={`h-9 w-14 ${i % 2 ? 'self-end' : ''}`}>
+                    {award}
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+          <div className="text-center text-foreground-light">Leagues</div>
+        </Card>
+      ) : (
+        <Card className="row-span-2 opacity-50" />
+      )}
+
       <Card className="row-span-2 ">
         06
         <div className="absolute bottom-0 p-4 text-center text-foreground-light">Popular</div>
       </Card>
-      <Card className="gap-4">
-        <div className="flex flex-1 flex-col items-center justify-center gap-4 overflow-clip">
-          <div>
-            <div className="line-clamp-2 text-sm font-medium text-foreground-light">
-              Manifold: Live! - Sun 12/3 - Episode 1: - What will be true about this show
+
+      {stats.items.BETS_AGGREGATE_MARKET ? (
+        <Card className="gap-4">
+          <div className="flex flex-1 flex-col items-center justify-center gap-4 overflow-clip">
+            <div>
+              <div className="line-clamp-2 text-sm font-medium text-foreground-light">
+                {stats.items.BETS_AGGREGATE_MARKET.title}
+              </div>
+            </div>
+            <div className="flex flex-1 flex-row items-center text-5xl font-bold">
+              {stats.items.BETS_AGGREGATE_MARKET.amount}
             </div>
           </div>
-          <div className="flex flex-1 flex-row items-center text-5xl font-bold">67</div>
-        </div>
-        <div className="shrink-0 text-center text-foreground-light">Most bets</div>
-      </Card>
+          <div className="shrink-0 text-center text-foreground-light">Most bets</div>
+        </Card>
+      ) : (
+        <Card className="opacity-50" />
+      )}
 
       <UserCard user={user} className="md:hidden lg:flex" />
 
-      <Card className="gap-4">
-        <div className="flex flex-1 flex-col items-center justify-center gap-4 overflow-clip">
-          <div>
-            <div className="line-clamp-2 text-sm font-medium text-foreground-light">
-              Will TIME Magazine announce the announcement of the Person of The Year before Wednesday, December 6th?
+      {stats.items.POSITIONS_BEST_PERCENT_LOSS ? (
+        <Card className="gap-4">
+          <div className="flex flex-1 flex-col items-center justify-center gap-4 overflow-clip">
+            <div>
+              <div className="line-clamp-2 text-sm font-medium text-foreground-light">
+                {stats.items.POSITIONS_BEST_PERCENT_LOSS.title}
+              </div>
+            </div>
+            <div className="flex flex-1 flex-row items-center text-5xl font-light text-red">
+              {stats.items.POSITIONS_BEST_PERCENT_LOSS.amount}%
             </div>
           </div>
-          <div className="flex flex-1 flex-row items-center text-5xl font-light text-red">-100%</div>
-        </div>
-        <div className="shrink-0 text-center text-foreground-light">Worst drop</div>
-      </Card>
-      <Card>
-        <div className="flex flex-1 flex-col justify-center">
-          <div className="flex h-24 w-24 items-center justify-center rounded-full bg-blue text-5xl font-light tracking-tight text-black">
-            47
-          </div>
-        </div>
-        <div className="text-center text-foreground-light">Days forecasting</div>
-      </Card>
-      <Card className="row-span-2">
-        <div className="grid-rows-7 grid w-full flex-1 px-4 pt-4">
-          <div className="flex flex-col gap-1">
-            <div className="h-4 w-12 rounded bg-yellow" />
-            <div className="text-xs text-foreground-light">Monday</div>
-          </div>
+          <div className="shrink-0 text-center text-foreground-light">Worst drop</div>
+        </Card>
+      ) : (
+        <Card className="opacity-50" />
+      )}
 
-          <div className="flex flex-col gap-1">
-            <div className="h-4 w-8 rounded bg-yellow" />
-            <div className="text-xs text-foreground-light">Tuesday</div>
-          </div>
-
-          <div className="flex flex-col gap-1">
-            <div className="h-4 w-14 rounded bg-yellow" />
-            <div className="text-xs text-foreground-light">Wednesday</div>
-          </div>
-
-          <div className="flex flex-col gap-1">
-            <div className="h-4 w-28 rounded bg-yellow" />
-            <div className="text-xs text-foreground-light">Thursday</div>
-          </div>
-
-          <div className="flex flex-col gap-1">
-            <div className="h-4 w-14 rounded bg-yellow" />
-            <div className="text-xs text-foreground-light">Friday</div>
-          </div>
-
-          <div className="flex flex-col gap-1">
-            <div className="h-4 w-6 rounded bg-yellow" />
-            <div className="text-xs text-foreground-light">Saturday</div>
-          </div>
-
-          <div className="flex flex-col gap-1">
-            <div className="h-4 w-20 rounded bg-yellow" />
-            <div className="text-xs text-foreground-light">Sunday</div>
-          </div>
-        </div>
-        <div className="text-center text-foreground-light">Bets by day</div>
-      </Card>
-
-      <Card className="col-span-2 hidden gap-4 md:flex">
-        <div className="flex flex-1 flex-col items-center justify-center gap-4 overflow-clip">
-          <div>
-            <div className="line-clamp-1 text-sm font-medium text-foreground-light">
-              What games will be nominated for Game of the Year at The Game Awards 2023?
+      {stats.items.USER_DAYS_SINCE_CREATION ? (
+        <Card>
+          <div className="flex flex-1 flex-col justify-center">
+            <div className="flex h-24 w-24 items-center justify-center rounded-full bg-blue text-5xl font-light tracking-tight text-black">
+              {stats.items.USER_DAYS_SINCE_CREATION.count}
             </div>
           </div>
-          <div className="flex flex-1 flex-row items-center text-7xl font-light text-green">545%</div>
-        </div>
-        <div className="shrink-0 text-center text-foreground-light">Best gain</div>
-      </Card>
+          <div className="text-center text-foreground-light">Days forecasting</div>
+        </Card>
+      ) : (
+        <Card className="opacity-50" />
+      )}
 
-      <Card className="gap-4">
-        <div className="flex flex-1 flex-col items-center justify-center gap-4 overflow-clip">
-          <div className="flex w-full flex-row items-center gap-1 text-sm font-medium text-foreground-light">
-            <WaterDropIcon className="h-4 w-4" /> 1215
-          </div>
-          <div className="flex flex-1 flex-row items-center text-lg font-bold">
-            <div className="line-clamp-3">Will Sam Altman be reinstated as CEO of OpenAI by Sunday, November 19th?</div>
-          </div>
-        </div>
-        <div className="shrink-0 text-center text-foreground-light">Biggest market</div>
-      </Card>
-      <Card className="gap-4 md:hidden">
-        <div className="flex flex-1 flex-col items-center justify-center gap-4 overflow-clip">
-          <div className="flex flex-1 flex-row items-center justify-center">
-            <div className="flex flex-row items-center rounded-md bg-red px-2 font-mono text-2xl text-shadow">
-              -883
-              <SouthEastIcon />
+      {stats.items.BETS_BY_DAY ? (
+        <Card className="row-span-2">
+          <div className="grid-rows-7 grid w-full flex-1 px-4 pt-4">
+            <div className="flex flex-col gap-1">
+              <div
+                className="h-4 rounded bg-yellow"
+                style={{
+                  width: `${(stats.items.BETS_BY_DAY.mondayCount / stats.items.BETS_BY_DAY.totalCount) * 100}%`,
+                }}
+              />
+              <div className="text-xs text-foreground-light">Monday</div>
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <div
+                className="h-4 rounded bg-yellow"
+                style={{
+                  width: `${(stats.items.BETS_BY_DAY.tuesdayCount / stats.items.BETS_BY_DAY.totalCount) * 100}%`,
+                }}
+              />
+              <div className="text-xs text-foreground-light">Tuesday</div>
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <div
+                className="h-4 rounded bg-yellow"
+                style={{
+                  width: `${(stats.items.BETS_BY_DAY.wednesdayCount / stats.items.BETS_BY_DAY.totalCount) * 100}%`,
+                }}
+              />
+              <div className="text-xs text-foreground-light">Wednesday</div>
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <div
+                className="h-4 rounded bg-yellow"
+                style={{
+                  width: `${(stats.items.BETS_BY_DAY.thursdayCount / stats.items.BETS_BY_DAY.totalCount) * 100}%`,
+                }}
+              />
+              <div className="text-xs text-foreground-light">Thursday</div>
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <div
+                className="h-4 rounded bg-yellow"
+                style={{
+                  width: `${(stats.items.BETS_BY_DAY.fridayCount / stats.items.BETS_BY_DAY.totalCount) * 100}%`,
+                }}
+              />
+              <div className="text-xs text-foreground-light">Friday</div>
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <div
+                className="h-4 rounded bg-yellow"
+                style={{
+                  width: `${(stats.items.BETS_BY_DAY.saturdayCount / stats.items.BETS_BY_DAY.totalCount) * 100}%`,
+                }}
+              />
+              <div className="text-xs text-foreground-light">Saturday</div>
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <div
+                className="h-4 rounded bg-yellow"
+                style={{
+                  width: `${(stats.items.BETS_BY_DAY.sundayCount / stats.items.BETS_BY_DAY.totalCount) * 100}%`,
+                }}
+              />
+              <div className="text-xs text-foreground-light">Sunday</div>
             </div>
           </div>
-          <div>
-            <div className="line-clamp-2 text-lg">
-              Will Manifold have more than 1500 engaged users by the end of November?
+          <div className="text-center text-foreground-light">Bets by day</div>
+        </Card>
+      ) : (
+        <Card className="row-span-2 opacity-50" />
+      )}
+
+      {stats.items.POSITIONS_BEST_PERCENT_GAIN ? (
+        <Card className="col-span-2 hidden gap-4 md:flex">
+          <div className="flex flex-1 flex-col items-center justify-center gap-4 overflow-clip">
+            <div>
+              <div className="line-clamp-1 text-sm font-medium text-foreground-light">
+                {stats.items.POSITIONS_BEST_PERCENT_GAIN.title}
+              </div>
+            </div>
+            <div className="flex flex-1 flex-row items-center text-7xl font-light text-green">
+              {stats.items.POSITIONS_BEST_PERCENT_GAIN.amount}%
             </div>
           </div>
-        </div>
-        <div className="shrink-0 text-center text-foreground-light">Worst loss</div>
-      </Card>
-      <Card className="col-span-2 gap-4 md:hidden">
-        <div className="flex flex-1 flex-col items-center justify-center gap-4 overflow-clip">
-          <div>
-            <div className="line-clamp-1 text-sm font-medium text-foreground-light">
-              What games will be nominated for Game of the Year at The Game Awards 2023?
+          <div className="shrink-0 text-center text-foreground-light">Best gain</div>
+        </Card>
+      ) : (
+        <Card className="col-span-2 hidden opacity-50 md:flex" />
+      )}
+
+      {stats.items.MARKET_MOST_LIQUIDITY ? (
+        <Card className="gap-4">
+          <div className="flex flex-1 flex-col items-center justify-center gap-4 overflow-clip">
+            <div className="flex w-full flex-row items-center gap-1 text-sm font-medium text-foreground-light">
+              <WaterDropIcon className="h-4 w-4" /> {stats.items.MARKET_MOST_LIQUIDITY.amount}
+            </div>
+            <div className="flex flex-1 flex-row items-center text-lg font-bold">
+              <div className="line-clamp-3">{stats.items.MARKET_MOST_LIQUIDITY.title}</div>
             </div>
           </div>
-          <div className="flex flex-1 flex-row items-center text-7xl font-light text-green">545%</div>
-        </div>
-        <div className="shrink-0 text-center text-foreground-light">Best gain</div>
-      </Card>
-      <Card className="col-span-2 ">
-        <div className="flex flex-1 flex-row items-center justify-center gap-4">
-          <div className="mx-2 flex flex-row items-center rounded-md bg-white px-2 font-mono text-2xl text-black text-shadow">
-            <GroupIcon />
-            100
-          </div>
-          <div>
-            <div className="line-clamp-4 pr-4 text-lg">
-              Will Sam Altman be reinstated as CEO of OpenAI by Sunday, November 19th?
+          <div className="shrink-0 text-center text-foreground-light">Biggest market</div>
+        </Card>
+      ) : (
+        <Card className="opacity-50" />
+      )}
+
+      {stats.items.POSITIONS_LARGEST_LOSS ? (
+        <Card className="gap-4 md:hidden">
+          <div className="flex flex-1 flex-col items-center justify-center gap-4 overflow-clip">
+            <div className="flex flex-1 flex-row items-center justify-center">
+              <div className="flex flex-row items-center rounded-md bg-red px-2 font-mono text-2xl text-shadow">
+                {stats.items.POSITIONS_LARGEST_LOSS.amount}
+                <SouthEastIcon />
+              </div>
+            </div>
+            <div>
+              <div className="line-clamp-2 text-lg">{stats.items.POSITIONS_LARGEST_LOSS.title}</div>
             </div>
           </div>
-        </div>
-        <div className="text-center text-foreground-light">Most popular market</div>
-      </Card>
-      <Card className="hidden gap-4 md:flex">
-        <div className="flex flex-1 flex-col items-center justify-center gap-4 overflow-clip">
-          <div className="flex flex-1 flex-row items-center justify-center">
-            <div className="flex flex-row items-center rounded-md bg-red px-2 font-mono text-2xl text-shadow">
-              -883
-              <SouthEastIcon />
+          <div className="shrink-0 text-center text-foreground-light">Worst loss</div>
+        </Card>
+      ) : (
+        <Card className="gap-4 opacity-50 md:hidden" />
+      )}
+
+      {stats.items.POSITIONS_BEST_PERCENT_GAIN ? (
+        <Card className="col-span-2 gap-4 md:hidden">
+          <div className="flex flex-1 flex-col items-center justify-center gap-4 overflow-clip">
+            <div>
+              <div className="line-clamp-1 text-sm font-medium text-foreground-light">
+                {stats.items.POSITIONS_BEST_PERCENT_GAIN.title}
+              </div>
+            </div>
+            <div className="flex flex-1 flex-row items-center text-7xl font-light text-green">
+              {stats.items.POSITIONS_BEST_PERCENT_GAIN.amount}%
             </div>
           </div>
-          <div>
-            <div className="line-clamp-2 text-lg">
-              Will Manifold have more than 1500 engaged users by the end of November?
+          <div className="shrink-0 text-center text-foreground-light">Best gain</div>
+        </Card>
+      ) : (
+        <Card className="col-span-2 gap-4 opacity-50 md:hidden" />
+      )}
+
+      {stats.items.MARKET_MOST_BETTORS ? (
+        <Card className="col-span-2">
+          <div className="flex flex-1 flex-row items-center justify-center gap-4">
+            <div className="mx-2 flex flex-row items-center rounded-md bg-white px-2 font-mono text-2xl text-black text-shadow">
+              <GroupIcon />
+              {stats.items.MARKET_MOST_BETTORS.amount}
+            </div>
+            <div>
+              <div className="line-clamp-4 pr-4 text-lg">{stats.items.MARKET_MOST_BETTORS.title}</div>
             </div>
           </div>
-        </div>
-        <div className="shrink-0 text-center text-foreground-light">Worst loss</div>
-      </Card>
+          <div className="text-center text-foreground-light">Most popular market</div>
+        </Card>
+      ) : (
+        <Card className="col-span-2 opacity-50" />
+      )}
+
+      {stats.items.POSITIONS_LARGEST_LOSS ? (
+        <Card className="hidden gap-4 md:flex">
+          <div className="flex flex-1 flex-col items-center justify-center gap-4 overflow-clip">
+            <div className="flex flex-1 flex-row items-center justify-center">
+              <div className="flex flex-row items-center rounded-md bg-red px-2 font-mono text-2xl text-shadow">
+                {stats.items.POSITIONS_LARGEST_LOSS.amount}
+                <SouthEastIcon />
+              </div>
+            </div>
+            <div>
+              <div className="line-clamp-2 text-lg">{stats.items.POSITIONS_LARGEST_LOSS.title}</div>
+            </div>
+          </div>
+          <div className="shrink-0 text-center text-foreground-light">Worst loss</div>
+        </Card>
+      ) : (
+        <Card className="hidden gap-4 opacity-50 md:flex" />
+      )}
+
       <Card className="col-span-2 ">
         14
         <div className="absolute bottom-0 p-4 text-center text-foreground-light">Popular</div>
       </Card>
 
-      <Card className="col-span-2 hidden md:flex lg:hidden">
-        <div className="flex flex-1 flex-row items-center justify-center gap-4">
-          <div className="mx-2 flex flex-row items-center rounded-md bg-green px-2 font-mono text-2xl text-shadow">
-            487
-            <NorthEastIcon />
+      {stats.items.POSITIONS_LARGEST_PROFIT ? (
+        <Card className="col-span-2 hidden md:flex lg:hidden">
+          <div className="flex flex-1 flex-row items-center justify-center gap-4">
+            <div className="mx-2 flex flex-row items-center rounded-md bg-green px-2 font-mono text-2xl text-shadow">
+              {stats.items.POSITIONS_LARGEST_PROFIT.amount}
+              <NorthEastIcon />
+            </div>
+            <div>
+              <div className="line-clamp-4 pr-4 text-lg">{stats.items.POSITIONS_LARGEST_PROFIT.title}</div>
+            </div>
           </div>
-          <div>
-            <div className="line-clamp-4 pr-4 text-lg">Which game will win GOTY at the Game Awards in 2023</div>
-          </div>
-        </div>
-        <div className="text-center text-foreground-light">Biggest profit</div>
-      </Card>
+          <div className="text-center text-foreground-light">Biggest profit</div>
+        </Card>
+      ) : (
+        <Card className="col-span-2 hidden opacity-50 md:flex lg:hidden" />
+      )}
     </div>
   )
 }
