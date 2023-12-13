@@ -124,18 +124,18 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
   return (
     <div className="my-8 grid auto-rows-[200px] grid-cols-2 gap-3 md:grid-cols-4 lg:grid-cols-6">
       {stats.items.USER_STREAK ? (
-        <Card className="bg-gradient-to-t from-red/30 to-40%" delay={0.75}>
+        <Card className="bg-gradient-to-t from-red/30 to-40%" delay={0.3}>
           <div className="flex flex-1 flex-col justify-center text-5xl font-bold">
             🔥{stats.items.USER_STREAK.count}
           </div>
           <div className="text-center text-foreground-light">Streak</div>
         </Card>
       ) : (
-        <Card className="opacity-50" delay={0.5} />
+        <Card className="opacity-50" delay={0.3} />
       )}
 
       {stats.items.BETS_AGGREGATE_TOPIC ? (
-        <Card className="md:hidden" delay={0.25}>
+        <Card className="md:hidden" delay={0.1}>
           <div className="flex flex-1 flex-col justify-center">
             <div className="inline-flex items-center justify-center rounded-md bg-purple px-2 py-1 text-center text-lg tracking-tight">
               {stats.items.BETS_AGGREGATE_TOPIC.name}
@@ -144,13 +144,13 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
           <div className="text-center text-foreground-light">Favorite topic</div>
         </Card>
       ) : (
-        <Card className="opacity-50 md:hidden" delay={0.75} />
+        <Card className="opacity-50 md:hidden" delay={0.1} />
       )}
 
       <UserCard user={user} className="md:flex lg:hidden" />
 
       {stats.items.POSITIONS_LARGEST_PROFIT ? (
-        <Card className="col-span-2 md:hidden lg:flex" delay={0.5}>
+        <Card className="col-span-2 md:hidden lg:flex" delay={0.2}>
           <div className="flex flex-1 flex-row items-center justify-center gap-4">
             <div className="mx-2 flex flex-row items-center rounded-md bg-green px-2 font-mono text-2xl text-shadow">
               {stats.items.POSITIONS_LARGEST_PROFIT.amount}
@@ -163,11 +163,11 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
           <div className="text-center text-foreground-light">Biggest profit</div>
         </Card>
       ) : (
-        <Card className="col-span-2 opacity-50 md:hidden lg:flex" delay={0.5} />
+        <Card className="col-span-2 opacity-50 md:hidden lg:flex" delay={0.2} />
       )}
 
       {stats.items.BETS_AGGREGATE_TOPIC ? (
-        <Card className="hidden md:flex" delay={1}>
+        <Card className="hidden md:flex" delay={0.4}>
           <div className="flex flex-1 flex-col justify-center">
             <div className="inline-flex items-center justify-center rounded-md bg-purple px-2 py-1 text-center text-lg tracking-tight">
               {stats.items.BETS_AGGREGATE_TOPIC.name}
@@ -176,22 +176,22 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
           <div className="text-center text-foreground-light">Favorite topic</div>
         </Card>
       ) : (
-        <Card className="hidden opacity-50 md:flex" delay={1} />
+        <Card className="hidden opacity-50 md:flex" delay={0.4} />
       )}
 
       {stats.items.USER_PROFIT ? (
-        <Card className={stats.items.USER_PROFIT.count > 0 ? 'bg-green' : 'bg-red'} delay={0.5}>
+        <Card className={stats.items.USER_PROFIT.count > 0 ? 'bg-green' : 'bg-red'} delay={0.2}>
           <div className="flex flex-1 flex-col justify-center font-mono text-4xl font-medium text-shadow">
             {stats.items.USER_PROFIT.count}
           </div>
           <div className="text-center text-foreground-light">Total profit</div>
         </Card>
       ) : (
-        <Card className="opacity-50" delay={0.5} />
+        <Card className="opacity-50" delay={0.2} />
       )}
 
       {stats.items.USER_LEAGUES ? (
-        <Card className="row-span-2 flex flex-col" delay={0.75}>
+        <Card className="row-span-2 flex flex-col" delay={0.3}>
           <div className="flex flex-1 flex-col justify-center">
             <div className="flex w-[120px] flex-col">
               {stats.items.USER_LEAGUES.leagues.map((league, i) => {
@@ -242,16 +242,16 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
           <div className="text-center text-foreground-light">Leagues</div>
         </Card>
       ) : (
-        <Card className="row-span-2 opacity-50" delay={0.75} />
+        <Card className="row-span-2 opacity-50" delay={0.3} />
       )}
 
-      <Card className="row-span-2" delay={0.5}>
+      <Card className="row-span-2" delay={0.2}>
         06
         <div className="absolute bottom-0 p-4 text-center text-foreground-light">Popular</div>
       </Card>
 
       {stats.items.BETS_AGGREGATE_MARKET ? (
-        <Card className="gap-4" delay={1.25}>
+        <Card className="gap-4" delay={0.5}>
           <div className="flex flex-1 flex-col items-center justify-center gap-4 overflow-clip">
             <div>
               <div className="line-clamp-2 text-sm font-medium text-foreground-light">
@@ -265,13 +265,13 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
           <div className="shrink-0 text-center text-foreground-light">Most bets</div>
         </Card>
       ) : (
-        <Card className="opacity-50" delay={1.25} />
+        <Card className="opacity-50" delay={0.5} />
       )}
 
       <UserCard user={user} className="md:hidden lg:flex" />
 
       {stats.items.POSITIONS_BEST_PERCENT_LOSS ? (
-        <Card className="gap-4" delay={0.75}>
+        <Card className="gap-4" delay={0.3}>
           <div className="flex flex-1 flex-col items-center justify-center gap-4 overflow-clip">
             <div>
               <div className="line-clamp-2 text-sm font-medium text-foreground-light">
@@ -285,11 +285,11 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
           <div className="shrink-0 text-center text-foreground-light">Worst drop</div>
         </Card>
       ) : (
-        <Card className="opacity-50" delay={0.75} />
+        <Card className="opacity-50" delay={0.3} />
       )}
 
       {stats.items.USER_DAYS_SINCE_CREATION ? (
-        <Card delay={1.5}>
+        <Card delay={0.6}>
           <div className="flex flex-1 flex-col justify-center">
             <div className="flex h-24 w-24 items-center justify-center rounded-full bg-blue text-5xl font-light tracking-tight text-black">
               {stats.items.USER_DAYS_SINCE_CREATION.count}
@@ -298,11 +298,11 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
           <div className="text-center text-foreground-light">Days forecasting</div>
         </Card>
       ) : (
-        <Card className="opacity-50" delay={1.5} />
+        <Card className="opacity-50" delay={0.6} />
       )}
 
       {stats.items.BETS_BY_DAY ? (
-        <Card className="row-span-2" delay={1.75}>
+        <Card className="row-span-2" delay={0.7}>
           <div className="grid-rows-7 grid w-full flex-1 px-4 pt-4">
             <div className="flex flex-col gap-1">
               <div
@@ -377,11 +377,11 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
           <div className="text-center text-foreground-light">Bets by day</div>
         </Card>
       ) : (
-        <Card className="row-span-2 opacity-50" delay={1.75} />
+        <Card className="row-span-2 opacity-50" delay={0.7} />
       )}
 
       {stats.items.POSITIONS_BEST_PERCENT_GAIN ? (
-        <Card className="col-span-2 hidden gap-4 md:flex" delay={1.25}>
+        <Card className="col-span-2 hidden gap-4 md:flex" delay={0.5}>
           <div className="flex flex-1 flex-col items-center justify-center gap-4 overflow-clip">
             <div>
               <div className="line-clamp-1 text-sm font-medium text-foreground-light">
@@ -395,11 +395,11 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
           <div className="shrink-0 text-center text-foreground-light">Best gain</div>
         </Card>
       ) : (
-        <Card className="col-span-2 hidden opacity-50 md:flex" delay={1.25} />
+        <Card className="col-span-2 hidden opacity-50 md:flex" delay={0.5} />
       )}
 
       {stats.items.MARKET_MOST_LIQUIDITY ? (
-        <Card className="gap-4" delay={2}>
+        <Card className="gap-4" delay={0.8}>
           <div className="flex flex-1 flex-col items-center justify-center gap-4 overflow-clip">
             <div className="flex w-full flex-row items-center gap-1 text-sm font-medium text-foreground-light">
               <WaterDropIcon className="h-4 w-4" /> {stats.items.MARKET_MOST_LIQUIDITY.amount}
@@ -411,11 +411,11 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
           <div className="shrink-0 text-center text-foreground-light">Biggest market</div>
         </Card>
       ) : (
-        <Card className="opacity-50" delay={2} />
+        <Card className="opacity-50" delay={0.8} />
       )}
 
       {stats.items.POSITIONS_LARGEST_LOSS ? (
-        <Card className="gap-4 md:hidden" delay={1.75}>
+        <Card className="gap-4 md:hidden" delay={0.7}>
           <div className="flex flex-1 flex-col items-center justify-center gap-4 overflow-clip">
             <div className="flex flex-1 flex-row items-center justify-center">
               <div className="flex flex-row items-center rounded-md bg-red px-2 font-mono text-2xl text-shadow">
@@ -430,11 +430,11 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
           <div className="shrink-0 text-center text-foreground-light">Worst loss</div>
         </Card>
       ) : (
-        <Card className="gap-4 opacity-50 md:hidden" delay={1.75} />
+        <Card className="gap-4 opacity-50 md:hidden" delay={0.7} />
       )}
 
       {stats.items.POSITIONS_BEST_PERCENT_GAIN ? (
-        <Card className="col-span-2 gap-4 md:hidden" delay={2.25}>
+        <Card className="col-span-2 gap-4 md:hidden" delay={0.9}>
           <div className="flex flex-1 flex-col items-center justify-center gap-4 overflow-clip">
             <div>
               <div className="line-clamp-1 text-sm font-medium text-foreground-light">
@@ -448,11 +448,11 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
           <div className="shrink-0 text-center text-foreground-light">Best gain</div>
         </Card>
       ) : (
-        <Card className="col-span-2 gap-4 opacity-50 md:hidden" delay={2.25} />
+        <Card className="col-span-2 gap-4 opacity-50 md:hidden" delay={0.9} />
       )}
 
       {stats.items.MARKET_MOST_BETTORS ? (
-        <Card className="col-span-2" delay={2}>
+        <Card className="col-span-2" delay={0.8}>
           <div className="flex flex-1 flex-row items-center justify-center gap-4">
             <div className="mx-2 flex flex-row items-center rounded-md bg-white px-2 font-mono text-2xl text-black text-shadow">
               <GroupIcon />
@@ -465,11 +465,11 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
           <div className="text-center text-foreground-light">Most popular market</div>
         </Card>
       ) : (
-        <Card className="col-span-2 opacity-50" delay={2} />
+        <Card className="col-span-2 opacity-50" delay={0.8} />
       )}
 
       {stats.items.POSITIONS_LARGEST_LOSS ? (
-        <Card className="hidden gap-4 md:flex" delay={2.25}>
+        <Card className="hidden gap-4 md:flex" delay={0.9}>
           <div className="flex flex-1 flex-col items-center justify-center gap-4 overflow-clip">
             <div className="flex flex-1 flex-row items-center justify-center">
               <div className="flex flex-row items-center rounded-md bg-red px-2 font-mono text-2xl text-shadow">
@@ -484,16 +484,16 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
           <div className="shrink-0 text-center text-foreground-light">Worst loss</div>
         </Card>
       ) : (
-        <Card className="hidden gap-4 opacity-50 md:flex" delay={2.25} />
+        <Card className="hidden gap-4 opacity-50 md:flex" delay={0.9} />
       )}
 
-      <Card className="col-span-2" delay={2.5}>
+      <Card className="col-span-2" delay={1}>
         14
         <div className="absolute bottom-0 p-4 text-center text-foreground-light">Popular</div>
       </Card>
 
       {stats.items.POSITIONS_LARGEST_PROFIT ? (
-        <Card className="col-span-2 hidden md:flex lg:hidden" delay={2.75}>
+        <Card className="col-span-2 hidden md:flex lg:hidden" delay={1}>
           <div className="flex flex-1 flex-row items-center justify-center gap-4">
             <div className="mx-2 flex flex-row items-center rounded-md bg-green px-2 font-mono text-2xl text-shadow">
               {stats.items.POSITIONS_LARGEST_PROFIT.amount}
@@ -506,7 +506,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
           <div className="text-center text-foreground-light">Biggest profit</div>
         </Card>
       ) : (
-        <Card className="col-span-2 hidden opacity-50 md:flex lg:hidden" delay={2.75} />
+        <Card className="col-span-2 hidden opacity-50 md:flex lg:hidden" delay={1} />
       )}
     </div>
   )
