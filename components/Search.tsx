@@ -3,7 +3,9 @@
 import { User, searchUsers } from '@/lib/manifold'
 import { Combobox, Transition } from '@headlessui/react'
 import { useParams, useRouter } from 'next/navigation'
-import { Fragment, useEffect, useState } from 'react'
+import { Fragment, useCallback, useEffect, useRef, useState } from 'react'
+import _ from 'lodash'
+import { useDebounce } from '@uidotdev/usehooks'
 
 const SearchIcon = ({ className }: { className?: string }) => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
@@ -25,12 +27,13 @@ export function Search({ searchUsers }: { searchUsers: (query: string) => Promis
   const params = useParams()
   const [query, setQuery] = useState('')
   const [users, setUsers] = useState<Array<User>>([])
+  const debouncedQuery = useDebounce(query, 200)
 
   useEffect(() => {
-    searchUsers(query).then((users) => {
+    searchUsers(debouncedQuery).then((users) => {
       setUsers(users)
     })
-  }, [query, searchUsers])
+  }, [debouncedQuery, searchUsers])
 
   return (
     <Combobox onChange={(username) => router.push(`/${username}`)} immediate>
