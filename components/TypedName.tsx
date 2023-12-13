@@ -13,6 +13,7 @@ export default function TypedName({ name }: { name: string }) {
       type: 'tween',
       duration: 1,
       ease: 'easeInOut',
+      delay: 0.2,
     })
     return controls.stop
   }, [])

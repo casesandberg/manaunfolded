@@ -38,7 +38,7 @@ export function Search() {
         <Combobox.Input
           placeholder={String(params.username)}
           onChange={(event) => setQuery(event.target.value)}
-          className="h-10 w-full rounded-2xl bg-white bg-opacity-10 pl-9 text-foreground focus-visible:outline-none focus-visible:ring focus-visible:ring-white/50"
+          className="h-10 w-full rounded-2xl bg-white bg-opacity-10 pl-9 text-foreground transition-[background] hover:bg-opacity-15 focus-visible:outline-none focus-visible:ring focus-visible:ring-white/50"
         />
         <Transition
           as={Fragment}
