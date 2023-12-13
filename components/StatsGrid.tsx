@@ -144,12 +144,22 @@ function calculateDayWidth(
   return `${finalRatio * 100}%`
 }
 
-function UserCard({ user, loading, className }: { user: User; loading?: boolean; className?: string }) {
+function UserCard({
+  user,
+  loading,
+  empty,
+  className,
+}: {
+  user: User
+  loading?: boolean
+  empty?: boolean
+  className?: string
+}) {
   return (
     <CardWithExternalLink
       href={`https://manifold.markets/${user.username}`}
       className={
-        loading
+        loading || empty
           ? `via-purple-500 col-span-2 bg-gradient-to-br from-indigo-500/20 to-pink-500/20 ${className}`
           : `via-purple-500 col-span-2 bg-gradient-to-br from-indigo-500 to-pink-500 ${className}`
       }
@@ -176,7 +186,8 @@ function UserCard({ user, loading, className }: { user: User; loading?: boolean;
 }
 
 export default function StatsGrid({ user, stats }: { user: User; stats: Stats }) {
-  const isGenerating = stats.processing && Object.keys(stats.items).length === 0
+  const isEmpty = Object.keys(stats.items).length === 0
+  const isGenerating = stats.processing && isEmpty
 
   return (
     <div className="my-8 grid auto-rows-[200px] grid-cols-2 gap-3 md:grid-cols-4 lg:grid-cols-6">
@@ -204,7 +215,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
         <Card className="md:hidden" opacity={0.5} delay={0.1} />
       )}
 
-      <UserCard user={user} loading={isGenerating} className="md:flex lg:hidden" />
+      <UserCard user={user} empty={isEmpty} loading={isGenerating} className="md:flex lg:hidden" />
 
       {stats.items.POSITIONS_LARGEST_PROFIT ? (
         <CardWithExternalLink
@@ -332,7 +343,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
         <Card opacity={0.5} delay={0.5} />
       )}
 
-      <UserCard user={user} loading={isGenerating} className="md:hidden lg:flex" />
+      <UserCard user={user} empty={isEmpty} loading={isGenerating} className="md:hidden lg:flex" />
 
       {stats.items.POSITIONS_BEST_PERCENT_LOSS ? (
         <CardWithExternalLink href={stats.items.POSITIONS_BEST_PERCENT_LOSS.url} className="gap-4" delay={0.3}>

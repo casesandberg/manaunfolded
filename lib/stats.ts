@@ -1,3 +1,5 @@
+'use server'
+
 export type Stats = {
   processing: boolean
   items: {
@@ -160,6 +162,10 @@ const db: Record<string, Stats> = {
   },
 }
 
-export function getStats(userId: string) {
-  return db[userId] || { processing: true, items: {} }
+export async function getStats(userId: string) {
+  return db[userId] || { processing: false, items: {} }
+}
+
+export async function startProcessing(userId: string) {
+  db[userId] = { items: { ...db[userId]?.items }, processing: true }
 }

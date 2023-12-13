@@ -1,8 +1,9 @@
 import { Container } from '@/components/Container'
 import NotFoundGrid from '@/components/NotFoundGrid'
+import StartProcessingForUser from '@/components/StartProcessingForUser'
 import StatsGrid from '@/components/StatsGrid'
 import { getUserByUsername } from '@/lib/manifold'
-import { getStats } from '@/lib/stats'
+import { getStats, startProcessing } from '@/lib/stats'
 
 export async function generateMetadata({ params: { username } }: { params: { username: string } }) {
   try {
@@ -25,6 +26,7 @@ export default async function UserPage({ params: { username } }: { params: { use
 
     return (
       <div className="flex flex-auto items-center">
+        <StartProcessingForUser user={user} stats={stats} startProcessing={startProcessing} />
         <Container>
           <StatsGrid user={user} stats={stats} />
         </Container>
