@@ -229,7 +229,9 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
               <NorthEastIcon />
             </div>
             <div>
-              <div className="line-clamp-4 pr-4 text-lg">{stats.items.POSITIONS_LARGEST_PROFIT.title}</div>
+              <div className="line-clamp-4 pr-4 text-lg font-semibold">
+                {stats.items.POSITIONS_LARGEST_PROFIT.title}
+              </div>
             </div>
           </div>
           <div className="text-center text-foreground-light">Biggest profit</div>
@@ -320,10 +322,39 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
         <Card className="row-span-2" opacity={0.5} delay={0.3} />
       )}
 
-      <Card className="row-span-2" delay={0.2} opacity={0.5}>
-        06
-        <div className="absolute bottom-0 p-4 text-center text-foreground-light">Popular</div>
-      </Card>
+      {stats.items.POPULAR_1 ? (
+        <CardWithExternalLink href={stats.items.POPULAR_1.url} className="row-span-2" delay={0.2}>
+          <div className="flex flex-1 flex-col items-start justify-center gap-4 overflow-clip">
+            <div className="flex w-full flex-row items-center gap-1 text-sm font-medium text-foreground-light">
+              {stats.items.POPULAR_1.hashtag}
+            </div>
+            <div className="flex flex-1 flex-col justify-center gap-4 px-1">
+              <div className="line-clamp-4 text-lg font-semibold">{stats.items.POPULAR_1.title}</div>
+
+              <div>
+                <span className="rounded bg-[#888] box-decoration-clone p-2 font-mono text-base text-white">
+                  {stats.items.POPULAR_1.answer}
+                </span>
+              </div>
+
+              {stats.items.POPULAR_1.position ? (
+                <div>
+                  <span
+                    className={`rounded box-decoration-clone p-2 font-mono text-xs text-white ${
+                      stats.items.POPULAR_1.position > 0 ? 'bg-green hover:bg-green' : 'bg-red hover:bg-red'
+                    }`}
+                  >
+                    {stats.items.POPULAR_1.position} Profit
+                  </span>
+                </div>
+              ) : null}
+            </div>
+          </div>
+          <div className="shrink-0 text-center text-foreground-light">Popular this year</div>
+        </CardWithExternalLink>
+      ) : (
+        <Card className="row-span-2" delay={0.2} opacity={0.5} />
+      )}
 
       {stats.items.BETS_AGGREGATE_MARKET ? (
         <CardWithExternalLink href={stats.items.BETS_AGGREGATE_MARKET.url} className="gap-4" delay={0.5}>
@@ -483,7 +514,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
             <div className="flex w-full flex-row items-center gap-1 text-sm font-medium text-foreground-light">
               <WaterDropIcon className="h-4 w-4" /> {stats.items.MARKET_MOST_LIQUIDITY.amount}
             </div>
-            <div className="flex flex-1 flex-row items-center text-lg font-bold">
+            <div className="flex flex-1 flex-row items-center text-lg font-semibold">
               <div className="line-clamp-3">{stats.items.MARKET_MOST_LIQUIDITY.title}</div>
             </div>
           </div>
@@ -503,7 +534,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
               </div>
             </div>
             <div>
-              <div className="line-clamp-2 text-lg">{stats.items.POSITIONS_LARGEST_LOSS.title}</div>
+              <div className="line-clamp-2 text-lg font-semibold">{stats.items.POSITIONS_LARGEST_LOSS.title}</div>
             </div>
           </div>
           <div className="shrink-0 text-center text-foreground-light">Worst loss</div>
@@ -542,7 +573,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
               {stats.items.MARKET_MOST_BETTORS.amount}
             </div>
             <div>
-              <div className="line-clamp-4 pr-4 text-lg">{stats.items.MARKET_MOST_BETTORS.title}</div>
+              <div className="line-clamp-4 pr-4 text-lg font-semibold">{stats.items.MARKET_MOST_BETTORS.title}</div>
             </div>
           </div>
           <div className="text-center text-foreground-light">Most popular market</div>
@@ -565,7 +596,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
               </div>
             </div>
             <div>
-              <div className="line-clamp-2 text-lg">{stats.items.POSITIONS_LARGEST_LOSS.title}</div>
+              <div className="line-clamp-2 text-lg font-semibold">{stats.items.POSITIONS_LARGEST_LOSS.title}</div>
             </div>
           </div>
           <div className="shrink-0 text-center text-foreground-light">Worst loss</div>
@@ -574,10 +605,38 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
         <Card className="hidden gap-4 md:flex" opacity={0.5} delay={0.9} />
       )}
 
-      <Card className="col-span-2" delay={1} opacity={0.5}>
-        14
-        <div className="absolute bottom-0 p-4 text-center text-foreground-light">Popular</div>
-      </Card>
+      {stats.items.POPULAR_2 ? (
+        <CardWithExternalLink href={stats.items.POPULAR_2.url} className="col-span-2" delay={1}>
+          <div className="flex flex-1 flex-row items-center justify-center gap-4">
+            <div className="flex-1">
+              <div className="line-clamp-4 pl-4 text-lg font-semibold">{stats.items.POPULAR_2.title}</div>
+            </div>
+            <div className="mx-2 flex flex-1 flex-col gap-4 px-2">
+              <div className="text-sm font-medium text-foreground-light">{stats.items.POPULAR_2.hashtag}</div>
+              <div>
+                <span className="rounded bg-[#888] box-decoration-clone p-2 font-mono text-base text-white">
+                  {stats.items.POPULAR_2.answer}
+                </span>
+              </div>
+
+              {stats.items.POPULAR_2.position ? (
+                <div>
+                  <span
+                    className={`rounded box-decoration-clone p-2 font-mono text-xs text-white ${
+                      stats.items.POPULAR_2.position > 0 ? 'bg-green hover:bg-green' : 'bg-red hover:bg-red'
+                    }`}
+                  >
+                    {stats.items.POPULAR_2.position} Profit
+                  </span>
+                </div>
+              ) : null}
+            </div>
+          </div>
+          <div className="text-center text-foreground-light">Popular this year</div>
+        </CardWithExternalLink>
+      ) : (
+        <Card className="col-span-2" delay={1} opacity={0.5} />
+      )}
 
       {stats.items.POSITIONS_LARGEST_PROFIT ? (
         <CardWithExternalLink
@@ -591,7 +650,9 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
               <NorthEastIcon />
             </div>
             <div>
-              <div className="line-clamp-4 pr-4 text-lg">{stats.items.POSITIONS_LARGEST_PROFIT.title}</div>
+              <div className="line-clamp-4 pr-4 text-lg font-semibold">
+                {stats.items.POSITIONS_LARGEST_PROFIT.title}
+              </div>
             </div>
           </div>
           <div className="text-center text-foreground-light">Biggest profit</div>

@@ -74,6 +74,22 @@ export type Stats = {
       title: string
       amount: number
     }
+    POPULAR_1?: {
+      marketId: string
+      url: string
+      title: string
+      hashtag: string
+      answer: string
+      position?: number
+    }
+    POPULAR_2?: {
+      marketId: string
+      url: string
+      title: string
+      hashtag: string
+      answer: string
+      position?: number
+    }
   }
 }
 
@@ -157,6 +173,21 @@ const db: Record<string, Stats> = {
         url: 'https://manifold.markets/123',
         title: 'Will Sam Altman be reinstated as CEO of OpenAI by Sunday, November 19th?',
         amount: 100,
+      },
+      POPULAR_1: {
+        marketId: '123',
+        url: 'https://manifold.markets/Joshua/who-will-be-time-person-of-the-year',
+        title: "Who will be TIME's Person of the Year 2023?",
+        hashtag: '#POTY',
+        answer: 'Taylor Swift',
+        position: -40,
+      },
+      POPULAR_2: {
+        marketId: '123',
+        url: 'https://manifold.markets/QuantumObserver/will-the-lk99-room-temp-ambient-pre',
+        title: 'Will the LK-99 room temp, ambient pressure superconductivity pre-print replicate before 2025?',
+        answer: '3% chance',
+        hashtag: '#LK99',
       },
     },
   },
