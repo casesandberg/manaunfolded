@@ -14,10 +14,7 @@ import { Stats } from '@/lib/stats'
 import _ from 'lodash'
 import { z } from 'zod'
 
-export const DIVISION_NAMES: Record<
-  string,
-  'silicon' | 'bronze' | 'silver' | 'gold' | 'platinum' | 'diamond' | 'masters'
-> = {
+const DIVISION_NAMES: Record<string, 'silicon' | 'bronze' | 'silver' | 'gold' | 'platinum' | 'diamond' | 'masters'> = {
   0: 'silicon',
   1: 'bronze',
   2: 'silver',
