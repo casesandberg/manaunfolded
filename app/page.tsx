@@ -3,11 +3,11 @@ import { Search } from '@/components/Search'
 import { User, searchUsers } from '@/lib/manifold'
 
 const INITIAL_SUGGESTIONS = [
-  { name: 'Joshua', username: 'Joshua', id: 'j' },
+  { name: 'Eliezer Yudkowsky', username: 'EliezerYudkowsky', id: 'e' },
+  { name: 'Scott Alexander', username: 'ScottAlexander', id: 'sa' },
   { name: 'S G', username: 'SG', id: 's' },
-  { name: 'Brian T. Edwards', username: 'BTE', id: 'b' },
-  { name: 'Mira', username: 'Mira', id: 'm' },
   { name: 'firstuserhere', username: 'firstuserhere', id: 'f' },
+  { name: 'Joshua', username: 'Joshua', id: 'j' },
 ] as Array<User>
 
 export default function Home() {
