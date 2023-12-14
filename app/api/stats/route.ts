@@ -38,7 +38,7 @@ function notEmpty<TValue>(value: TValue | null | undefined): value is TValue {
   return value !== null && value !== undefined
 }
 
-export const statsSchema = z
+const statsSchema = z
   .object({
     username: z.string(),
   })

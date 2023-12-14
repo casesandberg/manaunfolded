@@ -16,7 +16,7 @@ export default function TypedName({ name }: { name: string }) {
       delay: 0.2,
     })
     return controls.stop
-  }, [])
+  }, [count, name.length])
 
   return <motion.span>{displayText}</motion.span>
 }
