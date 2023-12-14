@@ -263,7 +263,11 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
           className={stats.items.USER_PROFIT.count > 0 ? 'bg-green hover:bg-green' : 'bg-red hover:bg-red'}
           delay={0.2}
         >
-          <div className="flex flex-1 flex-col justify-center font-mono text-4xl font-medium text-shadow">
+          <div
+            className={`flex flex-1 flex-col justify-center font-mono font-medium text-shadow ${
+              stats.items.USER_PROFIT.count > 999999 ? 'text-3xl' : 'text-4xl'
+            }`}
+          >
             <FormatNumber value={stats.items.USER_PROFIT.count} />
           </div>
           <div className="text-center text-foreground-light">Total profit</div>
