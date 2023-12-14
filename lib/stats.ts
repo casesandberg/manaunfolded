@@ -96,6 +96,124 @@ export type Stats = {
 }
 
 const db: Record<string, Stats> = {
+  JlVpsgzLsbOUT4pajswVMr0ZzmM2: {
+    processing: false,
+    items: {
+      USER_PROFIT: {
+        count: 351740.73387932003,
+      },
+      USER_STREAK: {
+        count: 209,
+      },
+      USER_DAYS_SINCE_CREATION: {
+        count: 659,
+      },
+      USER_LEAGUES: {
+        leagues: [
+          {
+            season: 7,
+            division: 'masters',
+          },
+          {
+            season: 6,
+            division: 'masters',
+          },
+          {
+            season: 5,
+            division: 'masters',
+          },
+          {
+            season: 4,
+            division: 'diamond',
+          },
+          {
+            season: 3,
+            division: 'platinum',
+          },
+          {
+            season: 2,
+            division: 'gold',
+          },
+          {
+            season: 1,
+            division: 'bronze',
+          },
+        ],
+      },
+      MARKET_MOST_LIQUIDITY: {
+        marketId: 'fOV0K6Zbf9dTsUk00agH',
+        url: 'https://manifold.markets/Joshua/who-will-be-time-person-of-the-year',
+        title: "Who will be TIME's Person of the Year 2023?",
+        amount: 80655,
+      },
+      MARKET_MOST_BETTORS: {
+        marketId: 'fOV0K6Zbf9dTsUk00agH',
+        url: 'https://manifold.markets/Joshua/who-will-be-time-person-of-the-year',
+        title: "Who will be TIME's Person of the Year 2023?",
+        amount: 1935,
+      },
+      BETS_BY_DAY: {
+        maxCount: 27774,
+        wednesdayCount: 17221,
+        tuesdayCount: 27774,
+        mondayCount: 25734,
+        sundayCount: 12481,
+        saturdayCount: 12881,
+        fridayCount: 14935,
+        thursdayCount: 13974,
+      },
+      BETS_AGGREGATE_MARKET: {
+        marketId: 'oHKwM5KXR9lmKYgVIfBR',
+        url: 'https://manifold.markets/sophiawisdom/why-was-sam-altman-fired',
+        title: 'Why was Sam Altman fired?',
+        amount: 654,
+      },
+      POSITIONS_LARGEST_LOSS: {
+        marketId: 'xuXB9fuwa6d3m5SYs6gw',
+        url: 'https://manifold.markets/Joshua/finalists-only-who-will-be-the-time',
+        title: '[Finalists Only] Who will be the TIME Person of the Year 2023?',
+        amount: -5705.611655350196,
+      },
+      POSITIONS_LARGEST_PROFIT: {
+        marketId: 'AAMJTwjx0zAY2iMgwRlC',
+        url: 'https://manifold.markets/SimonGrayson/who-will-be-the-next-speaker-of-the-0b49bf53ad12',
+        title: 'Who will be the next Speaker of the US House of Representatives?',
+        amount: 40465.73768267317,
+      },
+      POSITIONS_BEST_PERCENT_LOSS: {
+        marketId: 'jRgDlh6uRS2Y13ajRFlh',
+        url: 'https://manifold.markets/SimonLejeune/will-chatgpt-be-time-person-of-the',
+        title: 'Will ChatGPT be Time Person of the Year in 2023?',
+        amount: -100,
+      },
+      POSITIONS_BEST_PERCENT_GAIN: {
+        marketId: 'wOhUdm6PFqu4ylA7Gjjp',
+        url: 'https://manifold.markets/saulmunn/will-manifold-release-a-manifoldlov',
+        title: 'Will Manifold release a Manifold.Love app by EOY?',
+        amount: 681.5312705934216,
+      },
+      BETS_AGGREGATE_TOPIC: {
+        id: '2e9a87df-94e3-458c-bc5f-81e891b13101',
+        name: 'Manifold.love Relationships',
+      },
+      POPULAR_1: {
+        marketId: '1sfbjcTu6zgqjCVjqWA2',
+        url: 'https://manifold.markets/QuantumObserver/will-the-lk99-room-temp-ambient-pre',
+        title: 'Will the LK-99 room temp, ambient pressure superconductivity pre-print replicate before 2025?',
+        hashtag: '#LK99',
+        answer: '3% chance',
+        position: 2293.394197861606,
+      },
+      POPULAR_2: {
+        marketId: 'fOV0K6Zbf9dTsUk00agH',
+        url: 'https://manifold.markets/Joshua/who-will-be-time-person-of-the-year',
+        title: "Who will be TIME's Person of the Year 2023?",
+        hashtag: '#POTY',
+        answer: 'Taylor Swift',
+        position: 9200.06114154471,
+      },
+    },
+  },
   AAlytu8Z2cYd1ewYzuqhkU9NMgt2: {
     processing: false,
     items: {
