@@ -2,6 +2,7 @@ import { User } from '@/lib/manifold'
 import { Card, CardWithExternalLink } from './Card'
 import TypedName from './TypedName'
 import { Stats } from '@/lib/stats'
+import { FormatNumber } from './FormatNumber'
 
 const NorthEastIcon = ({ className }: { className?: string }) => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
@@ -225,7 +226,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
         >
           <div className="flex flex-1 flex-row items-center justify-center gap-4">
             <div className="mx-2 flex flex-row items-center rounded-md bg-green px-2 font-mono text-2xl text-shadow">
-              {stats.items.POSITIONS_LARGEST_PROFIT.amount}
+              <FormatNumber value={stats.items.POSITIONS_LARGEST_PROFIT.amount} />
               <NorthEastIcon />
             </div>
             <div>
@@ -259,7 +260,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
           delay={0.2}
         >
           <div className="flex flex-1 flex-col justify-center font-mono text-4xl font-medium text-shadow">
-            {stats.items.USER_PROFIT.count}
+            <FormatNumber value={stats.items.USER_PROFIT.count} />
           </div>
           <div className="text-center text-foreground-light">Total profit</div>
         </Card>
@@ -332,7 +333,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
               <div className="line-clamp-4 text-lg font-semibold">{stats.items.POPULAR_1.title}</div>
 
               <div>
-                <span className="rounded bg-[#888] box-decoration-clone p-2 font-mono text-base text-white">
+                <span className="rounded bg-[#888] box-decoration-clone p-2 font-mono text-base font-semibold text-white text-shadow">
                   {stats.items.POPULAR_1.answer}
                 </span>
               </div>
@@ -340,11 +341,11 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
               {stats.items.POPULAR_1.position ? (
                 <div>
                   <span
-                    className={`rounded box-decoration-clone p-2 font-mono text-xs text-white ${
+                    className={`rounded box-decoration-clone p-2 font-mono text-xs font-semibold text-white text-shadow ${
                       stats.items.POPULAR_1.position > 0 ? 'bg-green hover:bg-green' : 'bg-red hover:bg-red'
                     }`}
                   >
-                    {stats.items.POPULAR_1.position} Profit
+                    <FormatNumber value={stats.items.POPULAR_1.position} /> Profit
                   </span>
                 </div>
               ) : null}
@@ -365,7 +366,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
               </div>
             </div>
             <div className="flex flex-1 flex-row items-center text-5xl font-bold">
-              {stats.items.BETS_AGGREGATE_MARKET.amount}
+              <FormatNumber value={stats.items.BETS_AGGREGATE_MARKET.amount} />
             </div>
           </div>
           <div className="shrink-0 text-center text-foreground-light">Most bets</div>
@@ -385,7 +386,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
               </div>
             </div>
             <div className="flex flex-1 flex-row items-center text-5xl font-light text-red">
-              {stats.items.POSITIONS_BEST_PERCENT_LOSS.amount}%
+              <FormatNumber value={stats.items.POSITIONS_BEST_PERCENT_LOSS.amount} />%
             </div>
           </div>
           <div className="shrink-0 text-center text-foreground-light">Worst drop</div>
@@ -499,7 +500,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
               </div>
             </div>
             <div className="flex flex-1 flex-row items-center text-7xl font-light text-green">
-              {stats.items.POSITIONS_BEST_PERCENT_GAIN.amount}%
+              <FormatNumber value={stats.items.POSITIONS_BEST_PERCENT_GAIN.amount} />%
             </div>
           </div>
           <div className="shrink-0 text-center text-foreground-light">Best gain</div>
@@ -512,7 +513,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
         <CardWithExternalLink href={stats.items.MARKET_MOST_LIQUIDITY.url} className="gap-4" delay={0.8}>
           <div className="flex flex-1 flex-col items-center justify-center gap-4 overflow-clip">
             <div className="flex w-full flex-row items-center gap-1 text-sm font-medium text-foreground-light">
-              <WaterDropIcon className="h-4 w-4" /> {stats.items.MARKET_MOST_LIQUIDITY.amount}
+              <WaterDropIcon className="h-4 w-4" /> <FormatNumber value={stats.items.MARKET_MOST_LIQUIDITY.amount} />
             </div>
             <div className="flex flex-1 flex-row items-center text-lg font-semibold">
               <div className="line-clamp-3">{stats.items.MARKET_MOST_LIQUIDITY.title}</div>
@@ -529,7 +530,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
           <div className="flex flex-1 flex-col items-center justify-center gap-4 overflow-clip">
             <div className="flex flex-1 flex-row items-center justify-center">
               <div className="flex flex-row items-center rounded-md bg-red px-2 font-mono text-2xl text-shadow">
-                {stats.items.POSITIONS_LARGEST_LOSS.amount}
+                <FormatNumber value={stats.items.POSITIONS_LARGEST_LOSS.amount} />
                 <SouthEastIcon />
               </div>
             </div>
@@ -556,7 +557,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
               </div>
             </div>
             <div className="flex flex-1 flex-row items-center text-7xl font-light text-green">
-              {stats.items.POSITIONS_BEST_PERCENT_GAIN.amount}%
+              <FormatNumber value={stats.items.POSITIONS_BEST_PERCENT_GAIN.amount} />%
             </div>
           </div>
           <div className="shrink-0 text-center text-foreground-light">Best gain</div>
@@ -570,7 +571,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
           <div className="flex flex-1 flex-row items-center justify-center gap-4">
             <div className="mx-2 flex flex-row items-center rounded-md bg-white px-2 font-mono text-2xl text-black text-shadow">
               <GroupIcon />
-              {stats.items.MARKET_MOST_BETTORS.amount}
+              <FormatNumber value={stats.items.MARKET_MOST_BETTORS.amount} />
             </div>
             <div>
               <div className="line-clamp-4 pr-4 text-lg font-semibold">{stats.items.MARKET_MOST_BETTORS.title}</div>
@@ -591,7 +592,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
           <div className="flex flex-1 flex-col items-center justify-center gap-4 overflow-clip">
             <div className="flex flex-1 flex-row items-center justify-center">
               <div className="flex flex-row items-center rounded-md bg-red px-2 font-mono text-2xl text-shadow">
-                {stats.items.POSITIONS_LARGEST_LOSS.amount}
+                <FormatNumber value={stats.items.POSITIONS_LARGEST_LOSS.amount} />
                 <SouthEastIcon />
               </div>
             </div>
@@ -608,13 +609,13 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
       {stats.items.POPULAR_2 ? (
         <CardWithExternalLink href={stats.items.POPULAR_2.url} className="col-span-2" delay={1}>
           <div className="flex flex-1 flex-row items-center justify-center gap-4">
-            <div className="flex-1">
+            <div className="flex-[3]">
               <div className="line-clamp-4 pl-4 text-lg font-semibold">{stats.items.POPULAR_2.title}</div>
             </div>
-            <div className="mx-2 flex flex-1 flex-col gap-4 px-2">
+            <div className="mx-2 flex flex-[2] flex-col gap-4 pr-2">
               <div className="text-sm font-medium text-foreground-light">{stats.items.POPULAR_2.hashtag}</div>
               <div>
-                <span className="rounded bg-[#888] box-decoration-clone p-2 font-mono text-base text-white">
+                <span className="rounded bg-[#888] box-decoration-clone p-2 font-mono text-base font-semibold text-white text-shadow">
                   {stats.items.POPULAR_2.answer}
                 </span>
               </div>
@@ -622,11 +623,11 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
               {stats.items.POPULAR_2.position ? (
                 <div>
                   <span
-                    className={`rounded box-decoration-clone p-2 font-mono text-xs text-white ${
+                    className={`rounded box-decoration-clone p-2 font-mono text-xs font-semibold text-white text-shadow ${
                       stats.items.POPULAR_2.position > 0 ? 'bg-green hover:bg-green' : 'bg-red hover:bg-red'
                     }`}
                   >
-                    {stats.items.POPULAR_2.position} Profit
+                    <FormatNumber value={stats.items.POPULAR_2.position} /> Profit
                   </span>
                 </div>
               ) : null}
@@ -646,7 +647,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
         >
           <div className="flex flex-1 flex-row items-center justify-center gap-4">
             <div className="mx-2 flex flex-row items-center rounded-md bg-green px-2 font-mono text-2xl text-shadow">
-              {stats.items.POSITIONS_LARGEST_PROFIT.amount}
+              <FormatNumber value={stats.items.POSITIONS_LARGEST_PROFIT.amount} />
               <NorthEastIcon />
             </div>
             <div>
