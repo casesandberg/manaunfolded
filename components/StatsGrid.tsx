@@ -206,8 +206,10 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
       {stats.items.BETS_AGGREGATE_TOPIC ? (
         <Card className="md:hidden" delay={0.1}>
           <div className="flex flex-1 flex-col justify-center">
-            <div className="inline-flex items-center justify-center rounded-md bg-purple px-2 py-1 text-center text-lg tracking-tight">
-              {stats.items.BETS_AGGREGATE_TOPIC.name}
+            <div className="text-center">
+              <span className="rounded-md bg-purple box-decoration-clone p-2 text-lg tracking-tight text-white text-shadow">
+                {stats.items.BETS_AGGREGATE_TOPIC.name}
+              </span>
             </div>
           </div>
           <div className="text-center text-foreground-light">Favorite topic</div>
@@ -244,8 +246,10 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
       {stats.items.BETS_AGGREGATE_TOPIC ? (
         <Card className="hidden md:flex" delay={0.4}>
           <div className="flex flex-1 flex-col justify-center">
-            <div className="inline-flex items-center justify-center rounded-md bg-purple px-2 py-1 text-center text-lg tracking-tight">
-              {stats.items.BETS_AGGREGATE_TOPIC.name}
+            <div className="text-center">
+              <span className="rounded-md bg-purple box-decoration-clone p-2 text-lg tracking-tight text-white text-shadow">
+                {stats.items.BETS_AGGREGATE_TOPIC.name}
+              </span>
             </div>
           </div>
           <div className="text-center text-foreground-light">Favorite topic</div>
@@ -398,7 +402,11 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
       {stats.items.USER_DAYS_SINCE_CREATION ? (
         <Card delay={0.6}>
           <div className="flex flex-1 flex-col justify-center">
-            <div className="flex h-24 w-24 items-center justify-center rounded-full bg-blue text-5xl font-light tracking-tight text-black">
+            <div
+              className={`flex h-24 w-24 items-center justify-center rounded-full bg-blue font-light tracking-tight text-black ${
+                stats.items.USER_DAYS_SINCE_CREATION.count > 99 ? 'text-4xl' : 'text-5xl'
+              }`}
+            >
               {stats.items.USER_DAYS_SINCE_CREATION.count}
             </div>
           </div>
