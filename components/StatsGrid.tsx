@@ -205,7 +205,7 @@ function UserCard({
       {loading ? (
         <div className="text-center text-foreground-light">Generating. Please wait a minute.</div>
       ) : (
-        <div className="text-center text-foreground-light">2023 Year in Review</div>
+        <div className="text-foreground-medium text-center">Manifold Year in Review</div>
       )}
     </CardWithExternalLink>
   )
@@ -421,7 +421,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
         empty={isEmpty}
         loading={isGenerating}
         hasCappedProcessing={stats.cappedMarketProcessing}
-        className="md:hidden lg:flex"
+        className="hidden lg:flex"
       />
 
       {stats.items.POSITIONS_BEST_PERCENT_LOSS ? (
@@ -566,8 +566,8 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
             <div className="flex w-full flex-row items-center gap-1 text-sm font-medium text-foreground-light">
               <WaterDropIcon className="h-4 w-4" /> <FormatNumber value={stats.items.MARKET_MOST_LIQUIDITY.amount} />
             </div>
-            <div className="flex flex-1 flex-row items-center text-lg font-semibold">
-              <div className="line-clamp-3 [overflow-wrap:anywhere]">{stats.items.MARKET_MOST_LIQUIDITY.title}</div>
+            <div className="flex flex-1 flex-row items-center text-base font-semibold">
+              <div className="line-clamp-4 [overflow-wrap:anywhere]">{stats.items.MARKET_MOST_LIQUIDITY.title}</div>
             </div>
           </div>
           <div className="shrink-0 text-center text-foreground-light">Biggest market</div>
@@ -577,8 +577,8 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
       )}
 
       {stats.items.POSITIONS_LARGEST_LOSS ? (
-        <CardWithExternalLink href={stats.items.POSITIONS_LARGEST_LOSS.url} className="gap-4 md:hidden" delay={0.7}>
-          <div className="flex flex-1 flex-col items-center justify-center gap-4 overflow-clip">
+        <CardWithExternalLink href={stats.items.POSITIONS_LARGEST_LOSS.url} className="gap-3 md:hidden" delay={0.7}>
+          <div className="flex flex-1 flex-col items-center justify-center gap-3 overflow-clip">
             <div className="flex flex-1 flex-row items-center justify-center">
               <div className="flex flex-row items-center rounded-md bg-red px-2 font-mono text-2xl text-shadow">
                 <FormatNumber value={stats.items.POSITIONS_LARGEST_LOSS.amount} />
@@ -586,7 +586,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
               </div>
             </div>
             <div>
-              <div className="line-clamp-2 text-lg font-semibold [overflow-wrap:anywhere]">
+              <div className="line-clamp-4 text-base font-semibold leading-snug [overflow-wrap:anywhere]">
                 {stats.items.POSITIONS_LARGEST_LOSS.title}
               </div>
             </div>
@@ -641,10 +641,10 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
       {stats.items.POSITIONS_LARGEST_LOSS ? (
         <CardWithExternalLink
           href={stats.items.POSITIONS_LARGEST_LOSS.url}
-          className="hidden gap-4 md:flex"
+          className="hidden gap-3 md:flex"
           delay={0.9}
         >
-          <div className="flex flex-1 flex-col items-center justify-center gap-4 overflow-clip">
+          <div className="flex flex-1 flex-col items-center justify-center gap-3 overflow-clip">
             <div className="flex flex-1 flex-row items-center justify-center">
               <div className="flex flex-row items-center rounded-md bg-red px-2 font-mono text-2xl text-shadow">
                 <FormatNumber value={stats.items.POSITIONS_LARGEST_LOSS.amount} />
@@ -652,7 +652,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
               </div>
             </div>
             <div>
-              <div className="line-clamp-2 text-lg font-semibold [overflow-wrap:anywhere] [overflow-wrap:anywhere]">
+              <div className="line-clamp-4 text-base font-semibold leading-snug [overflow-wrap:anywhere]">
                 {stats.items.POSITIONS_LARGEST_LOSS.title}
               </div>
             </div>

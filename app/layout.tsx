@@ -52,7 +52,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
               <p>
                 <a
-                  href="https://github.com/casesandberg/manifold-bounties"
+                  href="https://github.com/casesandberg/manaunfolded"
                   className="flex flex-row items-center gap-2 underline-offset-4 hover:text-foreground hover:underline"
                 >
                   Open Source on Github

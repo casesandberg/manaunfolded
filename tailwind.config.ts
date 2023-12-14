@@ -24,6 +24,7 @@ const config: Config = {
         foreground: {
           DEFAULT: '#ffffff',
           light: 'rgba(255,255,255,0.5)',
+          medium: 'rgba(255,255,255,0.75)',
         },
       },
       opacity: {
