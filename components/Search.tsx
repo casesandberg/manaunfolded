@@ -1,9 +1,9 @@
 'use client'
 
-import { User, searchUsers } from '@/lib/manifold'
+import { User } from '@/lib/manifold'
 import { Combobox, Transition } from '@headlessui/react'
 import { useParams, useRouter } from 'next/navigation'
-import { Fragment, useCallback, useEffect, useRef, useState } from 'react'
+import { Fragment, useEffect, useRef, useState } from 'react'
 import _ from 'lodash'
 import { useDebounce } from '@uidotdev/usehooks'
 
@@ -22,27 +22,51 @@ const KeyboardArrowRightIcon = ({ className }: { className?: string }) => (
   </svg>
 )
 
-export function Search({ searchUsers }: { searchUsers: (query: string) => Promise<Array<User>> }) {
+export function Search({
+  focusOnRender,
+  searchUsers,
+  initialSuggestions = [],
+}: {
+  focusOnRender?: boolean
+  searchUsers: (query: string) => Promise<Array<User>>
+  initialSuggestions?: Array<User>
+}) {
   const router = useRouter()
   const params = useParams()
   const [query, setQuery] = useState('')
-  const [users, setUsers] = useState<Array<User>>([])
+  const [users, setUsers] = useState<Array<User>>(initialSuggestions)
   const debouncedQuery = useDebounce(query, 200)
+  const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
+    if (initialSuggestions.length && debouncedQuery === '') {
+      return
+    }
     searchUsers(debouncedQuery).then((users) => {
       setUsers(users)
     })
-  }, [debouncedQuery, searchUsers])
+  }, [debouncedQuery, searchUsers]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (focusOnRender) {
+      inputRef.current?.focus()
+    }
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Combobox onChange={(username) => router.push(`/${username}`)} immediate>
       <div className="relative w-full md:w-[400px]">
         <SearchIcon className="pointer-events-none absolute left-2 top-2 text-foreground-light" />
         <Combobox.Input
-          placeholder={String(params.username)}
+          ref={inputRef}
+          placeholder={params.username ? String(params.username) : 'Search for a user...'}
           onChange={(event) => setQuery(event.target.value)}
           className="h-10 w-full rounded-2xl bg-white bg-opacity-10 pl-9 text-foreground transition-[background] hover:bg-opacity-15 focus-visible:outline-none focus-visible:ring focus-visible:ring-white/50"
+          onBlur={() => {
+            if (inputRef.current) {
+              inputRef.current.value = ''
+            }
+          }}
         />
         <Transition
           as={Fragment}
