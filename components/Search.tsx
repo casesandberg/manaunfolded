@@ -26,10 +26,12 @@ export function Search({
   focusOnRender,
   searchUsers,
   initialSuggestions = [],
+  className,
 }: {
   focusOnRender?: boolean
   searchUsers: (query: string) => Promise<Array<User>>
   initialSuggestions?: Array<User>
+  className?: string
 }) {
   const router = useRouter()
   const params = useParams()
@@ -55,7 +57,7 @@ export function Search({
 
   return (
     <Combobox onChange={(username) => router.push(`/${username}`)} immediate>
-      <div className="relative w-full md:w-[400px]">
+      <div className={`relative w-full md:w-[400px] ${className}`}>
         <SearchIcon className="pointer-events-none absolute left-2 top-2 text-foreground-light" />
         <Combobox.Input
           ref={inputRef}
