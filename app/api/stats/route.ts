@@ -51,6 +51,7 @@ export const dynamic = 'force-dynamic'
 export async function GET(request: Request) {
   try {
     const items: Stats['items'] = {}
+    let cappedMarketProcessing = false
 
     const { searchParams } = new URL(request.url)
     const { username } = statsSchema.parse(Object.fromEntries(searchParams))
@@ -250,10 +251,16 @@ export async function GET(request: Request) {
 
       console.log(`Loading ${Object.keys(marketsByBets).length} markets bet on`)
 
+      const cappedMarketsByBets = _.take(Object.keys(marketsByBets), 1000)
+
+      if (Object.keys(marketsByBets).length > 1000) {
+        cappedMarketProcessing = true
+      }
+
       const marketPositions = await Promise.all(
-        Object.keys(marketsByBets).map(async (contractId, i) => {
+        cappedMarketsByBets.map(async (contractId, i) => {
           try {
-            await new Promise((r) => setTimeout(r, i * 50))
+            await new Promise((r) => setTimeout(r, i * 250))
             if (i % 100 === 0) {
               console.log('Loaded', i, 'markets')
             }
@@ -357,6 +364,7 @@ export async function GET(request: Request) {
     const data: Stats = {
       processing: false,
       items,
+      cappedMarketProcessing,
       lastFinishedProcessing: new Date().getTime(),
     }
 

@@ -7,6 +7,7 @@ export type Stats = {
   processing: boolean
   lastStartedProcessing?: number
   lastFinishedProcessing?: number
+  cappedMarketProcessing?: boolean
   items: {
     USER_STREAK?: {
       count: number

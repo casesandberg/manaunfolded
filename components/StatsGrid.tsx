@@ -70,6 +70,15 @@ const WorkspacePremiumIcon = ({ className }: { className?: string }) => (
   </svg>
 )
 
+const ErrorOutlineIcon = ({ className }: { className?: string }) => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+    <path
+      d="M11 15H13V17H11V15ZM11 7H13V13H11V7ZM11.99 2C6.47 2 2 6.48 2 12C2 17.52 6.47 22 11.99 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 11.99 2ZM12 20C7.58 20 4 16.42 4 12C4 7.58 7.58 4 12 4C16.42 4 20 7.58 20 12C20 16.42 16.42 20 12 20Z"
+      fill="currentColor"
+    />
+  </svg>
+)
+
 const LoadingIcon = () => (
   <svg
     aria-hidden="true"
@@ -150,11 +159,13 @@ function UserCard({
   loading,
   empty,
   className,
+  hasCappedProcessing,
 }: {
   user: User
   loading?: boolean
   empty?: boolean
   className?: string
+  hasCappedProcessing?: boolean
 }) {
   return (
     <CardWithExternalLink
@@ -166,6 +177,20 @@ function UserCard({
       }
       linkClassName="bg-transparent"
     >
+      {hasCappedProcessing ? (
+        <div className={`absolute left-2 top-2 rounded-xl p-2 text-white text-opacity-50`}>
+          <div className="group relative flex">
+            <ErrorOutlineIcon />
+            <span
+              className="absolute left-1/2 z-50 mx-auto mt-8 w-64 -translate-x-1/2 rounded-2xl bg-white/15 p-2 px-3 text-sm 
+    text-gray-100 opacity-0 backdrop-blur-lg transition-opacity group-hover:opacity-100"
+            >
+              Profit/loss is based on recent 1000 market positions. Message @case for analysis of all positions.
+            </span>
+          </div>
+        </div>
+      ) : null}
+
       {loading ? (
         <div className="absolute left-5 top-4">
           <LoadingIcon />
@@ -218,7 +243,13 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
         <Card className="md:hidden" opacity={0.5} delay={0.1} />
       )}
 
-      <UserCard user={user} empty={isEmpty} loading={isGenerating} className="md:flex lg:hidden" />
+      <UserCard
+        user={user}
+        empty={isEmpty}
+        loading={isGenerating}
+        hasCappedProcessing={stats.cappedMarketProcessing}
+        className="md:flex lg:hidden"
+      />
 
       {stats.items.POSITIONS_LARGEST_PROFIT ? (
         <CardWithExternalLink
@@ -385,7 +416,13 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
         <Card opacity={0.5} delay={0.5} />
       )}
 
-      <UserCard user={user} empty={isEmpty} loading={isGenerating} className="md:hidden lg:flex" />
+      <UserCard
+        user={user}
+        empty={isEmpty}
+        loading={isGenerating}
+        hasCappedProcessing={stats.cappedMarketProcessing}
+        className="md:hidden lg:flex"
+      />
 
       {stats.items.POSITIONS_BEST_PERCENT_LOSS ? (
         <CardWithExternalLink href={stats.items.POSITIONS_BEST_PERCENT_LOSS.url} className="gap-4" delay={0.3}>
