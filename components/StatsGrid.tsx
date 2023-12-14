@@ -232,7 +232,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
               <NorthEastIcon />
             </div>
             <div>
-              <div className="line-clamp-4 pr-4 text-lg font-semibold">
+              <div className="line-clamp-4 pr-4 text-lg font-semibold [overflow-wrap:anywhere]">
                 {stats.items.POSITIONS_LARGEST_PROFIT.title}
               </div>
             </div>
@@ -334,7 +334,9 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
               {stats.items.POPULAR_1.hashtag}
             </div>
             <div className="flex flex-1 flex-col justify-center gap-4 px-1">
-              <div className="line-clamp-4 text-lg font-semibold">{stats.items.POPULAR_1.title}</div>
+              <div className="line-clamp-4 text-lg font-semibold [overflow-wrap:anywhere]">
+                {stats.items.POPULAR_1.title}
+              </div>
 
               <div>
                 <span className="rounded bg-[#888] box-decoration-clone p-2 font-mono text-base font-semibold text-white text-shadow">
@@ -365,7 +367,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
         <CardWithExternalLink href={stats.items.BETS_AGGREGATE_MARKET.url} className="gap-4" delay={0.5}>
           <div className="flex flex-1 flex-col items-center justify-center gap-4 overflow-clip">
             <div>
-              <div className="line-clamp-2 text-sm font-medium text-foreground-light">
+              <div className="line-clamp-2 text-sm font-medium text-foreground-light [overflow-wrap:anywhere]">
                 {stats.items.BETS_AGGREGATE_MARKET.title}
               </div>
             </div>
@@ -385,7 +387,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
         <CardWithExternalLink href={stats.items.POSITIONS_BEST_PERCENT_LOSS.url} className="gap-4" delay={0.3}>
           <div className="flex flex-1 flex-col items-center justify-center gap-4 overflow-clip">
             <div>
-              <div className="line-clamp-2 text-sm font-medium text-foreground-light">
+              <div className="line-clamp-2 text-sm font-medium text-foreground-light [overflow-wrap:anywhere]">
                 {stats.items.POSITIONS_BEST_PERCENT_LOSS.title}
               </div>
             </div>
@@ -503,7 +505,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
         >
           <div className="flex flex-1 flex-col items-center justify-center gap-4 overflow-clip">
             <div>
-              <div className="line-clamp-1 text-sm font-medium text-foreground-light">
+              <div className="line-clamp-1 text-sm font-medium text-foreground-light [overflow-wrap:anywhere]">
                 {stats.items.POSITIONS_BEST_PERCENT_GAIN.title}
               </div>
             </div>
@@ -524,7 +526,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
               <WaterDropIcon className="h-4 w-4" /> <FormatNumber value={stats.items.MARKET_MOST_LIQUIDITY.amount} />
             </div>
             <div className="flex flex-1 flex-row items-center text-lg font-semibold">
-              <div className="line-clamp-3">{stats.items.MARKET_MOST_LIQUIDITY.title}</div>
+              <div className="line-clamp-3 [overflow-wrap:anywhere]">{stats.items.MARKET_MOST_LIQUIDITY.title}</div>
             </div>
           </div>
           <div className="shrink-0 text-center text-foreground-light">Biggest market</div>
@@ -543,7 +545,9 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
               </div>
             </div>
             <div>
-              <div className="line-clamp-2 text-lg font-semibold">{stats.items.POSITIONS_LARGEST_LOSS.title}</div>
+              <div className="line-clamp-2 text-lg font-semibold [overflow-wrap:anywhere]">
+                {stats.items.POSITIONS_LARGEST_LOSS.title}
+              </div>
             </div>
           </div>
           <div className="shrink-0 text-center text-foreground-light">Worst loss</div>
@@ -560,7 +564,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
         >
           <div className="flex flex-1 flex-col items-center justify-center gap-4 overflow-clip">
             <div>
-              <div className="line-clamp-1 text-sm font-medium text-foreground-light">
+              <div className="line-clamp-1 text-sm font-medium text-foreground-light [overflow-wrap:anywhere]">
                 {stats.items.POSITIONS_BEST_PERCENT_GAIN.title}
               </div>
             </div>
@@ -582,7 +586,9 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
               <FormatNumber value={stats.items.MARKET_MOST_BETTORS.amount} />
             </div>
             <div>
-              <div className="line-clamp-4 pr-4 text-lg font-semibold">{stats.items.MARKET_MOST_BETTORS.title}</div>
+              <div className="line-clamp-4 pr-4 text-lg font-semibold [overflow-wrap:anywhere]">
+                {stats.items.MARKET_MOST_BETTORS.title}
+              </div>
             </div>
           </div>
           <div className="text-center text-foreground-light">Most popular market</div>
@@ -605,7 +611,9 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
               </div>
             </div>
             <div>
-              <div className="line-clamp-2 text-lg font-semibold">{stats.items.POSITIONS_LARGEST_LOSS.title}</div>
+              <div className="line-clamp-2 text-lg font-semibold [overflow-wrap:anywhere] [overflow-wrap:anywhere]">
+                {stats.items.POSITIONS_LARGEST_LOSS.title}
+              </div>
             </div>
           </div>
           <div className="shrink-0 text-center text-foreground-light">Worst loss</div>
@@ -619,7 +627,9 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
           <div className="flex flex-1 flex-row items-center justify-center gap-4">
             <div className="flex-[3] pl-4">
               <div className="mb-2 text-sm font-medium text-foreground-light">{stats.items.POPULAR_2.hashtag}</div>
-              <div className="line-clamp-3 text-lg font-semibold">{stats.items.POPULAR_2.title}</div>
+              <div className="line-clamp-3 text-lg font-semibold [overflow-wrap:anywhere]">
+                {stats.items.POPULAR_2.title}
+              </div>
             </div>
             <div className="mx-2 flex flex-[2] flex-col gap-4 pr-2">
               <div>
@@ -659,7 +669,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
               <NorthEastIcon />
             </div>
             <div>
-              <div className="line-clamp-4 pr-4 text-lg font-semibold">
+              <div className="line-clamp-4 pr-4 text-lg font-semibold [overflow-wrap:anywhere]">
                 {stats.items.POSITIONS_LARGEST_PROFIT.title}
               </div>
             </div>
