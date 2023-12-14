@@ -2,6 +2,7 @@ import { Card, CardWithExternalLink } from '@/components/Card'
 import { Container } from '@/components/Container'
 import { FormatNumber } from '@/components/FormatNumber'
 import { Search } from '@/components/Search'
+import { REFERRAL_CODE } from '@/lib/constants'
 import { User, searchUsers } from '@/lib/manifold'
 
 const INITIAL_SUGGESTIONS = [
@@ -26,7 +27,7 @@ export default function Home() {
             <div className="text-center text-foreground-light">New Users</div>
           </Card>
           <CardWithExternalLink
-            href="https://manifold.markets/charity"
+            href={`https://manifold.markets/charity${REFERRAL_CODE}`}
             className="!bg-blue lg:col-[2] lg:row-[2]"
             delay={0.1}
           >
@@ -48,7 +49,7 @@ export default function Home() {
           </Card>
 
           <CardWithExternalLink
-            href="https://manifold.markets/QuantumObserver/will-the-lk99-room-temp-ambient-pre"
+            href={`https://manifold.markets/QuantumObserver/will-the-lk99-room-temp-ambient-pre${REFERRAL_CODE}`}
             className="lg:col-[5] lg:row-[1]"
             delay={0.3}
           >

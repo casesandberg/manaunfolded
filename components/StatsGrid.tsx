@@ -3,6 +3,7 @@ import { Card, CardWithExternalLink } from './Card'
 import TypedName from './TypedName'
 import { Stats } from '@/lib/stats'
 import { FormatNumber } from './FormatNumber'
+import { REFERRAL_CODE } from '@/lib/constants'
 
 const NorthEastIcon = ({ className }: { className?: string }) => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
@@ -169,7 +170,7 @@ function UserCard({
 }) {
   return (
     <CardWithExternalLink
-      href={`https://manifold.markets/${user.username}`}
+      href={`https://manifold.markets/${user.username}${REFERRAL_CODE}`}
       className={
         loading || empty
           ? `via-purple-500 col-span-2 bg-gradient-to-br from-indigo-500/20 to-pink-500/20 ${className}`
@@ -205,7 +206,7 @@ function UserCard({
       {loading ? (
         <div className="text-center text-foreground-light">Generating. Please wait a minute.</div>
       ) : (
-        <div className="text-foreground-medium text-center">Manifold Year in Review</div>
+        <div className="text-center text-foreground-medium">Manifold Year in Review</div>
       )}
     </CardWithExternalLink>
   )
@@ -253,7 +254,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
 
       {stats.items.POSITIONS_LARGEST_PROFIT ? (
         <CardWithExternalLink
-          href={stats.items.POSITIONS_LARGEST_PROFIT.url}
+          href={stats.items.POSITIONS_LARGEST_PROFIT.url + REFERRAL_CODE}
           className="col-span-2 md:hidden lg:flex"
           delay={0.2}
         >
@@ -363,7 +364,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
       )}
 
       {stats.items.POPULAR_1 ? (
-        <CardWithExternalLink href={stats.items.POPULAR_1.url} className="row-span-2" delay={0.2}>
+        <CardWithExternalLink href={stats.items.POPULAR_1.url + REFERRAL_CODE} className="row-span-2" delay={0.2}>
           <div className="flex flex-1 flex-col items-start justify-center gap-4 overflow-clip">
             <div className="flex w-full flex-row items-center gap-1 text-sm font-medium text-foreground-light">
               {stats.items.POPULAR_1.hashtag}
@@ -399,7 +400,11 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
       )}
 
       {stats.items.BETS_AGGREGATE_MARKET ? (
-        <CardWithExternalLink href={stats.items.BETS_AGGREGATE_MARKET.url} className="gap-4" delay={0.5}>
+        <CardWithExternalLink
+          href={stats.items.BETS_AGGREGATE_MARKET.url + REFERRAL_CODE}
+          className="gap-4"
+          delay={0.5}
+        >
           <div className="flex flex-1 flex-col items-center justify-center gap-4 overflow-clip">
             <div>
               <div className="line-clamp-2 text-sm font-medium text-foreground-light [overflow-wrap:anywhere]">
@@ -425,7 +430,11 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
       />
 
       {stats.items.POSITIONS_BEST_PERCENT_LOSS ? (
-        <CardWithExternalLink href={stats.items.POSITIONS_BEST_PERCENT_LOSS.url} className="gap-4" delay={0.3}>
+        <CardWithExternalLink
+          href={stats.items.POSITIONS_BEST_PERCENT_LOSS.url + REFERRAL_CODE}
+          className="gap-4"
+          delay={0.3}
+        >
           <div className="flex flex-1 flex-col items-center justify-center gap-4 overflow-clip">
             <div>
               <div className="line-clamp-2 text-sm font-medium text-foreground-light [overflow-wrap:anywhere]">
@@ -540,7 +549,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
 
       {stats.items.POSITIONS_BEST_PERCENT_GAIN ? (
         <CardWithExternalLink
-          href={stats.items.POSITIONS_BEST_PERCENT_GAIN.url}
+          href={stats.items.POSITIONS_BEST_PERCENT_GAIN.url + REFERRAL_CODE}
           className="col-span-2 hidden gap-4 md:flex"
           delay={0.5}
         >
@@ -561,7 +570,11 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
       )}
 
       {stats.items.MARKET_MOST_LIQUIDITY ? (
-        <CardWithExternalLink href={stats.items.MARKET_MOST_LIQUIDITY.url} className="gap-4" delay={0.8}>
+        <CardWithExternalLink
+          href={stats.items.MARKET_MOST_LIQUIDITY.url + REFERRAL_CODE}
+          className="gap-4"
+          delay={0.8}
+        >
           <div className="flex flex-1 flex-col items-center justify-center gap-4 overflow-clip">
             <div className="flex w-full flex-row items-center gap-1 text-sm font-medium text-foreground-light">
               <WaterDropIcon className="h-4 w-4" /> <FormatNumber value={stats.items.MARKET_MOST_LIQUIDITY.amount} />
@@ -577,7 +590,11 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
       )}
 
       {stats.items.POSITIONS_LARGEST_LOSS ? (
-        <CardWithExternalLink href={stats.items.POSITIONS_LARGEST_LOSS.url} className="gap-3 md:hidden" delay={0.7}>
+        <CardWithExternalLink
+          href={stats.items.POSITIONS_LARGEST_LOSS.url + REFERRAL_CODE}
+          className="gap-3 md:hidden"
+          delay={0.7}
+        >
           <div className="flex flex-1 flex-col items-center justify-center gap-3 overflow-clip">
             <div className="flex flex-1 flex-row items-center justify-center">
               <div className="flex flex-row items-center rounded-md bg-red px-2 font-mono text-2xl text-shadow">
@@ -599,7 +616,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
 
       {stats.items.POSITIONS_BEST_PERCENT_GAIN ? (
         <CardWithExternalLink
-          href={stats.items.POSITIONS_BEST_PERCENT_GAIN.url}
+          href={stats.items.POSITIONS_BEST_PERCENT_GAIN.url + REFERRAL_CODE}
           className="col-span-2 gap-4 md:hidden"
           delay={0.9}
         >
@@ -620,7 +637,11 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
       )}
 
       {stats.items.MARKET_MOST_BETTORS ? (
-        <CardWithExternalLink href={stats.items.MARKET_MOST_BETTORS.url} className="col-span-2" delay={0.8}>
+        <CardWithExternalLink
+          href={stats.items.MARKET_MOST_BETTORS.url + REFERRAL_CODE}
+          className="col-span-2"
+          delay={0.8}
+        >
           <div className="flex flex-1 flex-row items-center justify-center gap-4">
             <div className="mx-2 flex flex-row items-center rounded-md bg-white px-2 font-mono text-2xl text-black text-shadow">
               <GroupIcon />
@@ -640,7 +661,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
 
       {stats.items.POSITIONS_LARGEST_LOSS ? (
         <CardWithExternalLink
-          href={stats.items.POSITIONS_LARGEST_LOSS.url}
+          href={stats.items.POSITIONS_LARGEST_LOSS.url + REFERRAL_CODE}
           className="hidden gap-3 md:flex"
           delay={0.9}
         >
@@ -664,7 +685,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
       )}
 
       {stats.items.POPULAR_2 ? (
-        <CardWithExternalLink href={stats.items.POPULAR_2.url} className="col-span-2" delay={1}>
+        <CardWithExternalLink href={stats.items.POPULAR_2.url + REFERRAL_CODE} className="col-span-2" delay={1}>
           <div className="flex flex-1 flex-row items-center justify-center gap-4">
             <div className="flex-[3] pl-4">
               <div className="mb-2 text-sm font-medium text-foreground-light">{stats.items.POPULAR_2.hashtag}</div>
@@ -700,7 +721,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
 
       {stats.items.POSITIONS_LARGEST_PROFIT ? (
         <CardWithExternalLink
-          href={stats.items.POSITIONS_LARGEST_PROFIT.url}
+          href={stats.items.POSITIONS_LARGEST_PROFIT.url + REFERRAL_CODE}
           className="col-span-2 hidden md:flex lg:hidden"
           delay={1}
         >
