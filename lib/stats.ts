@@ -96,6 +96,118 @@ export type Stats = {
 }
 
 const db: Record<string, Stats> = {
+  AAlytu8Z2cYd1ewYzuqhkU9NMgt2: {
+    processing: false,
+    items: {
+      USER_PROFIT: {
+        count: 2116.190088736489,
+      },
+      USER_STREAK: {
+        count: 134,
+      },
+      USER_DAYS_SINCE_CREATION: {
+        count: 270,
+      },
+      USER_LEAGUES: {
+        leagues: [
+          {
+            season: 7,
+            division: 'platinum',
+          },
+          {
+            season: 6,
+            division: 'platinum',
+          },
+          {
+            season: 5,
+            division: 'gold',
+          },
+          {
+            season: 4,
+            division: 'bronze',
+          },
+          {
+            season: 3,
+            division: 'bronze',
+          },
+        ],
+      },
+      MARKET_MOST_LIQUIDITY: {
+        marketId: 'XVHTeAPvz3T8lZRNdIMb',
+        url: 'https://manifold.markets/Nikos/will-the-announcement-for-the-next',
+        title:
+          '[M2500 subsidy] Will the announcement for the next World of Warcraft expansion include a new playable race?',
+        amount: 3335,
+      },
+      MARKET_MOST_BETTORS: {
+        marketId: 'XVHTeAPvz3T8lZRNdIMb',
+        url: 'https://manifold.markets/Nikos/will-the-announcement-for-the-next',
+        title:
+          '[M2500 subsidy] Will the announcement for the next World of Warcraft expansion include a new playable race?',
+        amount: 39,
+      },
+      BETS_BY_DAY: {
+        maxCount: 412,
+        tuesdayCount: 375,
+        mondayCount: 104,
+        sundayCount: 191,
+        saturdayCount: 146,
+        fridayCount: 403,
+        thursdayCount: 412,
+        wednesdayCount: 239,
+      },
+      BETS_AGGREGATE_MARKET: {
+        marketId: 'oMnFF70ChMFwPPdH0mF9',
+        url: 'https://manifold.markets/perryisdead/apple-scary-fast-october-event-pred',
+        title: 'Apple "scary fast" October event predictions!',
+        amount: 22,
+      },
+      POSITIONS_LARGEST_LOSS: {
+        marketId: 'hPUkj4hpnNzVyaoeaXub',
+        url: 'https://manifold.markets/MartinRandall/the-first-piece-about-manifold-mark',
+        title: 'The first piece about Manifold Markets in New York Times will be positive',
+        amount: -900,
+      },
+      POSITIONS_LARGEST_PROFIT: {
+        marketId: 'agaoByQqJadT4i0i2by0',
+        url: 'https://manifold.markets/kian_spire/will-donald-trump-make-at-least-thr',
+        title: 'Will Donald Trump make at least three tweets in 2023?',
+        amount: 645.0497368244552,
+      },
+      POSITIONS_BEST_PERCENT_LOSS: {
+        marketId: 'NQp1zLQ6F9dyK9vl9SYR',
+        url: 'https://manifold.markets/Gen/will-bill-w-the-doggo-make-another',
+        title: 'Santa Paws: Will Bill W (the doggo) make another appearance on stream? ',
+        amount: -100,
+      },
+      POSITIONS_BEST_PERCENT_GAIN: {
+        marketId: 'QK9BBaKxRCf4KzgCWl8H',
+        url: 'https://manifold.markets/EhMe11/a-tornado-warning-was-just-announce',
+        title: 'A tornado warning was just announced in Ottawa Ontario Canada, will one touch down by 10pm EST?',
+        amount: 3620.111731843566,
+      },
+      BETS_AGGREGATE_TOPIC: {
+        id: 'IlzY3moWwOcpsVZXCVej',
+        name: '🖥️ Technology',
+      },
+      POPULAR_1: {
+        marketId: '1sfbjcTu6zgqjCVjqWA2',
+        url: 'https://manifold.markets/QuantumObserver/will-the-lk99-room-temp-ambient-pre',
+        title: 'Will the LK-99 room temp, ambient pressure superconductivity pre-print replicate before 2025?',
+        hashtag: '#LK99',
+        answer: '3% chance',
+        position: -7.486876489559938,
+      },
+      POPULAR_2: {
+        marketId: 'fOV0K6Zbf9dTsUk00agH',
+        url: 'https://manifold.markets/Joshua/who-will-be-time-person-of-the-year',
+        title: "Who will be TIME's Person of the Year 2023?",
+        hashtag: '#POTY',
+        answer: 'Taylor Swift',
+        position: -641.9558145732578,
+      },
+    },
+  },
   yhvV0TjNf6bDzOBBZ5cHGu1sPlF3: {
     processing: false,
     items: {

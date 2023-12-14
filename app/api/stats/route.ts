@@ -1,5 +1,4 @@
 import {
-  Bet,
   LiteMarket,
   Position,
   getBets,
@@ -13,7 +12,6 @@ import {
 } from '@/lib/manifold'
 import { Stats } from '@/lib/stats'
 import _ from 'lodash'
-import { NextRequest } from 'next/server'
 import { z } from 'zod'
 
 export const DIVISION_NAMES: Record<
@@ -49,7 +47,9 @@ export const statsSchema = z
   })
   .strict()
 
-export const dynamic = 'force-dynamic' // defaults to auto
+export const maxDuration = 300
+
+export const dynamic = 'force-dynamic'
 
 export async function GET(request: Request) {
   const items: Stats['items'] = {}
