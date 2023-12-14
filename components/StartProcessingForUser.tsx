@@ -19,7 +19,7 @@ export default function StartProcessingForUser({ user, stats }: { user: User; st
 
   useEffect(() => {
     let intervalDuration = 1000
-    const maxInterval = 300000
+    const maxInterval = 1000 * 60 * 6
     const backoffRate = 2
 
     const setNewInterval = () => {

@@ -194,7 +194,7 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
     <div className="my-8 grid auto-rows-[200px] grid-cols-2 gap-3 md:grid-cols-4 lg:grid-cols-6">
       {stats.items.USER_STREAK ? (
         <Card className="bg-gradient-to-t from-red/30 to-40%" delay={0.3}>
-          <div className="flex flex-1 flex-col justify-center text-5xl font-bold">
+          <div className="flex flex-1 flex-col justify-center text-center text-5xl font-bold">
             🔥{stats.items.USER_STREAK.count}
           </div>
           <div className="text-center text-foreground-light">Streak</div>

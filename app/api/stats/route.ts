@@ -157,14 +157,18 @@ export async function GET(request: Request) {
       console.log(`Loading ${Object.keys(marketsByBets).length} markets bet on`)
 
       const marketPositions = await Promise.all(
-        Object.keys(marketsByBets).map(async (contractId) => {
+        Object.keys(marketsByBets).map(async (contractId, i) => {
           try {
+            await new Promise((r) => setTimeout(r, i * 50))
+            if (i % 100 === 0) {
+              console.log('Loaded', i, 'markets')
+            }
+
             const [positions, market] = await Promise.all([
               getPositions({ id: contractId, userId: user.id }),
               getMarket({ id: contractId }),
             ])
 
-            await new Promise((r) => setTimeout(r, 400))
             return {
               positions,
               market,
@@ -357,6 +361,7 @@ export async function GET(request: Request) {
     }
 
     await updateStats(user.id, data)
+    console.log('Finished processing stats')
 
     return Response.json(data)
   } catch (error: any) {
