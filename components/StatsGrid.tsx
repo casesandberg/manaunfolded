@@ -617,11 +617,11 @@ export default function StatsGrid({ user, stats }: { user: User; stats: Stats })
       {stats.items.POPULAR_2 ? (
         <CardWithExternalLink href={stats.items.POPULAR_2.url} className="col-span-2" delay={1}>
           <div className="flex flex-1 flex-row items-center justify-center gap-4">
-            <div className="flex-[3]">
-              <div className="line-clamp-4 pl-4 text-lg font-semibold">{stats.items.POPULAR_2.title}</div>
+            <div className="flex-[3] pl-4">
+              <div className="mb-2 text-sm font-medium text-foreground-light">{stats.items.POPULAR_2.hashtag}</div>
+              <div className="line-clamp-3 text-lg font-semibold">{stats.items.POPULAR_2.title}</div>
             </div>
             <div className="mx-2 flex flex-[2] flex-col gap-4 pr-2">
-              <div className="text-sm font-medium text-foreground-light">{stats.items.POPULAR_2.hashtag}</div>
               <div>
                 <span className="rounded bg-[#888] box-decoration-clone p-2 font-mono text-base font-semibold text-white text-shadow">
                   {stats.items.POPULAR_2.answer}

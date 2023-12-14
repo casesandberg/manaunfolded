@@ -318,7 +318,7 @@ export async function GET(request: Request) {
         title: market.question,
         hashtag,
         answer,
-        position: position.profit ?? undefined,
+        position: position?.profit ?? undefined,
       }
     }
 
@@ -331,7 +331,7 @@ export async function GET(request: Request) {
         title: market.question,
         hashtag,
         answer,
-        position: position.profit ?? undefined,
+        position: position?.profit ?? undefined,
       }
     }
   } catch (error) {

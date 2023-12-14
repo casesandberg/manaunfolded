@@ -433,3 +433,6 @@ export async function getStats(userId: string) {
 export async function startProcessing(userId: string) {
   db[userId] = { items: { ...db[userId]?.items }, processing: true }
 }
+export async function setUser(userId: string, stats: Stats) {
+  db[userId] = { ...stats }
+}

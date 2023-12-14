@@ -176,7 +176,7 @@ export const loopIterator = async <P, R extends Array<any>>(
     const items = await iterator({ ...params, limit, before })
 
     collection.push(...items)
-    before = items.at(-1).id
+    before = items.at(-1)?.id
     iterations++
 
     console.log('Loaded', items.length, iterator.name, 'before', before)

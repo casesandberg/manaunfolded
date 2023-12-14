@@ -9,10 +9,12 @@ export default function StartProcessingForUser({
   user,
   stats,
   startProcessing,
+  setUser,
 }: {
   user: User
   stats: Stats
   startProcessing: (userId: string) => Promise<void>
+  setUser: (userId: string, stats: Stats) => Promise<void>
 }) {
   const router = useRouter()
   const isEmpty = Object.keys(stats.items).length === 0
@@ -22,9 +24,15 @@ export default function StartProcessingForUser({
     if (isEmpty && !isGenerating) {
       startProcessing(user.id).then(() => {
         router.refresh()
+
+        fetch(`/api/stats?username=${user.username}`)
+          .then((res) => res.json())
+          .then((stats) => {
+            setUser(user.id, stats)
+          })
       })
     }
-  }, [isEmpty, isGenerating, user.id, router, startProcessing])
+  }, [isEmpty, isGenerating])
 
   useEffect(() => {
     const interval = setInterval(() => {
