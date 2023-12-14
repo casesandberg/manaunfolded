@@ -58,7 +58,7 @@ export function CardWithExternalLink({
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className={`absolute right-2 top-2 rounded-xl bg-inherit p-2 text-white text-opacity-50 opacity-0 transition-[color] transition-[opacity] hover:text-opacity-75 ${linkClassName}`}
+        className={`absolute right-2 top-2 rounded-xl bg-inherit p-2 text-white text-opacity-50 opacity-0 transition-[color,opacity] hover:text-opacity-75 ${linkClassName}`}
       >
         <span className="sr-only">Link</span>
         <LaunchIcon />
