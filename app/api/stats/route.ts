@@ -109,6 +109,100 @@ export async function GET(request: Request) {
         }
       }
 
+      const popularMarkets: Array<{ market: LiteMarket; positions: Array<Position>; hashtag: string; answer: string }> =
+        []
+
+      const lk99Market = await getMarket({ slug: 'will-the-lk99-room-temp-ambient-pre' })
+      const lk99MarketPosition = await getPositions({ id: lk99Market.id, userId: user.id })
+
+      const potyMarket = await getMarket({ slug: 'who-will-be-time-person-of-the-year' })
+      const potyMarketPosition = await getPositions({ id: potyMarket.id, userId: user.id })
+
+      const shutdownMarket = await getMarket({ slug: 'will-there-be-a-us-government-shutd' })
+      const shutdownMarketPosition = await getPositions({ id: shutdownMarket.id, userId: user.id })
+
+      if (lk99MarketPosition.length) {
+        popularMarkets.push({
+          market: lk99Market,
+          positions: lk99MarketPosition,
+          hashtag: '#LK99',
+          answer: `${Math.round(lk99Market.probability * 100)}% chance`,
+        })
+      }
+
+      if (potyMarketPosition.length) {
+        popularMarkets.push({
+          market: potyMarket,
+          positions: potyMarketPosition,
+          hashtag: '#POTY',
+          answer: `Taylor Swift`,
+        })
+      }
+
+      if (shutdownMarketPosition.length) {
+        popularMarkets.push({
+          market: shutdownMarket,
+          positions: shutdownMarketPosition,
+          hashtag: '#SHUTDOWN',
+          answer: `${Math.round(shutdownMarket.probability * 100)}% chance`,
+        })
+      }
+
+      if (!popularMarkets.find(({ market }) => market.id === lk99Market.id)) {
+        popularMarkets.push({
+          market: lk99Market,
+          positions: lk99MarketPosition,
+          hashtag: '#LK99',
+          answer: `${Math.round(lk99Market.probability * 100)}% chance`,
+        })
+      }
+
+      if (!popularMarkets.find(({ market }) => market.id === potyMarket.id)) {
+        popularMarkets.push({
+          market: potyMarket,
+          positions: potyMarketPosition,
+          hashtag: '#POTY',
+          answer: `Taylor Swift`,
+        })
+      }
+
+      if (!popularMarkets.find(({ market }) => market.id === shutdownMarket.id)) {
+        popularMarkets.push({
+          market: shutdownMarket,
+          positions: shutdownMarketPosition,
+          hashtag: '#SHUTDOWN',
+          answer: `${Math.round(shutdownMarket.probability * 100)}% chance`,
+        })
+      }
+
+      const [firstPopularMarketSlot, secondPopularMarketSlot] = popularMarkets
+
+      if (firstPopularMarketSlot) {
+        const { market, positions, hashtag, answer } = firstPopularMarketSlot
+        const position = positions[0]
+        items['POPULAR_1'] = {
+          marketId: market.id,
+          url: market.url,
+          title: market.question,
+          hashtag,
+          answer,
+          position: position?.profit ?? undefined,
+        }
+      }
+
+      if (secondPopularMarketSlot) {
+        const { market, positions, hashtag, answer } = secondPopularMarketSlot
+        const position = positions[0]
+        items['POPULAR_2'] = {
+          marketId: market.id,
+          url: market.url,
+          title: market.question,
+          hashtag,
+          answer,
+          position: position?.profit ?? undefined,
+        }
+      }
+
       const bets = await loopIterator(getBets, { userId: user.id }, 125)
 
       const filteredBets = bets.filter((bet) => {
@@ -254,100 +348,6 @@ export async function GET(request: Request) {
         items['BETS_AGGREGATE_TOPIC'] = {
           id: group.id,
           name: group.name,
-        }
-      }
-
-      const popularMarkets: Array<{ market: LiteMarket; positions: Array<Position>; hashtag: string; answer: string }> =
-        []
-
-      const lk99Market = await getMarket({ slug: 'will-the-lk99-room-temp-ambient-pre' })
-      const lk99MarketPosition = await getPositions({ id: lk99Market.id, userId: user.id })
-
-      const potyMarket = await getMarket({ slug: 'who-will-be-time-person-of-the-year' })
-      const potyMarketPosition = await getPositions({ id: potyMarket.id, userId: user.id })
-
-      const shutdownMarket = await getMarket({ slug: 'will-there-be-a-us-government-shutd' })
-      const shutdownMarketPosition = await getPositions({ id: shutdownMarket.id, userId: user.id })
-
-      if (lk99MarketPosition.length) {
-        popularMarkets.push({
-          market: lk99Market,
-          positions: lk99MarketPosition,
-          hashtag: '#LK99',
-          answer: `${Math.round(lk99Market.probability * 100)}% chance`,
-        })
-      }
-
-      if (potyMarketPosition.length) {
-        popularMarkets.push({
-          market: potyMarket,
-          positions: potyMarketPosition,
-          hashtag: '#POTY',
-          answer: `Taylor Swift`,
-        })
-      }
-
-      if (shutdownMarketPosition.length) {
-        popularMarkets.push({
-          market: shutdownMarket,
-          positions: shutdownMarketPosition,
-          hashtag: '#SHUTDOWN',
-          answer: `${Math.round(shutdownMarket.probability * 100)}% chance`,
-        })
-      }
-
-      if (!popularMarkets.find(({ market }) => market.id === lk99Market.id)) {
-        popularMarkets.push({
-          market: lk99Market,
-          positions: lk99MarketPosition,
-          hashtag: '#LK99',
-          answer: `${Math.round(lk99Market.probability * 100)}% chance`,
-        })
-      }
-
-      if (!popularMarkets.find(({ market }) => market.id === potyMarket.id)) {
-        popularMarkets.push({
-          market: potyMarket,
-          positions: potyMarketPosition,
-          hashtag: '#POTY',
-          answer: `Taylor Swift`,
-        })
-      }
-
-      if (!popularMarkets.find(({ market }) => market.id === shutdownMarket.id)) {
-        popularMarkets.push({
-          market: shutdownMarket,
-          positions: shutdownMarketPosition,
-          hashtag: '#SHUTDOWN',
-          answer: `${Math.round(shutdownMarket.probability * 100)}% chance`,
-        })
-      }
-
-      const [firstPopularMarketSlot, secondPopularMarketSlot] = popularMarkets
-
-      if (firstPopularMarketSlot) {
-        const { market, positions, hashtag, answer } = firstPopularMarketSlot
-        const position = positions[0]
-        items['POPULAR_1'] = {
-          marketId: market.id,
-          url: market.url,
-          title: market.question,
-          hashtag,
-          answer,
-          position: position?.profit ?? undefined,
-        }
-      }
-
-      if (secondPopularMarketSlot) {
-        const { market, positions, hashtag, answer } = secondPopularMarketSlot
-        const position = positions[0]
-        items['POPULAR_2'] = {
-          marketId: market.id,
-          url: market.url,
-          title: market.question,
-          hashtag,
-          answer,
-          position: position?.profit ?? undefined,
         }
       }
     } catch (error) {
