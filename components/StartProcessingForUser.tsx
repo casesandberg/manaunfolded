@@ -18,6 +18,17 @@ export default function StartProcessingForUser({ user, stats }: { user: User; st
   }, [isEmpty, isGenerating, user.username])
 
   useEffect(() => {
+    const handleFocus = () => {
+      if (isGenerating) {
+        router.refresh()
+      }
+    }
+    window.addEventListener('focus', handleFocus)
+
+    return () => window.removeEventListener('focus', handleFocus)
+  })
+
+  useEffect(() => {
     let intervalDuration = 1000
     const maxInterval = 1000 * 60 * 6
     const backoffRate = 2
