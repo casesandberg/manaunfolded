@@ -8,9 +8,16 @@ import { Analytics } from '@vercel/analytics/react'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://manaunfolded.com/'),
   title: {
     template: '%s - Mana/unfolded',
-    default: 'Mana/unfolded - Your Year in Review',
+    default: 'Mana/unfolded - Your Manifold Year in Review',
+  },
+
+  description: 'Your Manifold Year in Review',
+
+  twitter: {
+    card: 'summary_large_image',
   },
 }
 
