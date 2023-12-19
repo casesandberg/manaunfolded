@@ -131,7 +131,7 @@ function UrlWithParams(url: string, params: Record<string, string>) {
 }
 
 export async function getUserByUsername(username: string) {
-  return fetchApi<User>('GET', `/v0/user?username=${username}`)
+  return fetchApi<User>('GET', `/v0/user/${username}`)
 }
 
 export async function searchUsers(term: string, limit: number = 5) {
@@ -151,15 +151,26 @@ export async function getBets(params: { limit?: string; before?: string; userId?
 }
 
 export async function getPositions(params: { id: string; userId?: string }) {
-  return fetchApi<Array<Position>>('GET', UrlWithParams('/v0/positions', params))
+  return fetchApi<Array<Position>>(
+    'GET',
+    UrlWithParams(`/v0/market/${params.id}/positions`, { userId: params.userId ?? '' }),
+  )
 }
 
-export async function getMarket(params: { id: string } | { slug: string }) {
-  return fetchApi<LiteMarket>('GET', UrlWithParams('/v0/market', params))
+export async function getMarket(params: { id: string }) {
+  return fetchApi<LiteMarket>('GET', `/v0/market/${params.id}`)
 }
 
-export async function getGroup(params: { id: string } | { slug: string }) {
-  return fetchApi<Group>('GET', UrlWithParams('/v0/group', params))
+export async function getMarketBySlug(params: { slug: string }) {
+  return fetchApi<LiteMarket>('GET', `/v0/slug/${params.slug}`)
+}
+
+export async function getGroup(params: { id: string }) {
+  return fetchApi<Group>('GET', `/v0/group/by-id/${params.id}`)
+}
+
+export async function getGroupBySlug(params: { slug: string }) {
+  return fetchApi<Group>('GET', `/v0/group/${params.slug}`)
 }
 
 export const loopIterator = async <P, R extends Array<any>>(

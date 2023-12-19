@@ -2,9 +2,10 @@ import {
   LiteMarket,
   Position,
   getBets,
-  getGroup,
+  getGroupBySlug,
   getLeagues,
   getMarket,
+  getMarketBySlug,
   getMarkets,
   getPositions,
   getUserByUsername,
@@ -113,13 +114,13 @@ export async function GET(request: Request) {
       const popularMarkets: Array<{ market: LiteMarket; positions: Array<Position>; hashtag: string; answer: string }> =
         []
 
-      const lk99Market = await getMarket({ slug: 'will-the-lk99-room-temp-ambient-pre' })
+      const lk99Market = await getMarketBySlug({ slug: 'will-the-lk99-room-temp-ambient-pre' })
       const lk99MarketPosition = await getPositions({ id: lk99Market.id, userId: user.id })
 
-      const potyMarket = await getMarket({ slug: 'who-will-be-time-person-of-the-year' })
+      const potyMarket = await getMarketBySlug({ slug: 'who-will-be-time-person-of-the-year' })
       const potyMarketPosition = await getPositions({ id: potyMarket.id, userId: user.id })
 
-      const shutdownMarket = await getMarket({ slug: 'will-there-be-a-us-government-shutd' })
+      const shutdownMarket = await getMarketBySlug({ slug: 'will-there-be-a-us-government-shutd' })
       const shutdownMarketPosition = await getPositions({ id: shutdownMarket.id, userId: user.id })
 
       if (lk99MarketPosition.length) {
@@ -351,7 +352,7 @@ export async function GET(request: Request) {
       const maxGroup = _.maxBy(Object.entries(groups), (group) => group[1])
 
       if (maxGroup) {
-        const group = await getGroup({ slug: maxGroup[0] })
+        const group = await getGroupBySlug({ slug: maxGroup[0] })
         items['BETS_AGGREGATE_TOPIC'] = {
           id: group.id,
           name: group.name,
